@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">PanditSutra1</string>
+    <string name="email_or_phone_number">Email or Phone Number</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="password">Password</string>
+    <string name="log_in">Log In</string>
+    <string name="facebook_app_id">185362528978076</string>
+    <string name="fb_login_protocol_scheme">fb185362528978076</string>
+
+
+</resources>

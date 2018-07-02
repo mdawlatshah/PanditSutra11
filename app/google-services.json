@@ -1,0 +1,59 @@
+{
+  "project_info": {
+    "project_number": "128208972553",
+    "firebase_url": "https://panditsutra1.firebaseio.com",
+    "project_id": "panditsutra1",
+    "storage_bucket": "panditsutra1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:128208972553:android:e4ce0caa19771c31",
+        "android_client_info": {
+          "package_name": "com.example.danial.panditsutra1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "128208972553-47h5152kpva8p9q8k2jikf0jo1ksjrlg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.danial.panditsutra1",
+            "certificate_hash": "2fd37bb37977712561947b0ccb32ce4707692308"
+          }
+        },
+        {
+          "client_id": "128208972553-68ofvs3pm4r4j6fe7ev7afq8mkc53mm1.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "128208972553-68ofvs3pm4r4j6fe7ev7afq8mkc53mm1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAj2ESWHwD7e0ZQSDL_TSwNcpqEkiiqnhI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "128208972553-68ofvs3pm4r4j6fe7ev7afq8mkc53mm1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
