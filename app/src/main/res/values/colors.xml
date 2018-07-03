@@ -4,11 +4,11 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="white">#ffffff</color>
+    <color name="btn_background">#F3796C</color>
+
 
     <!-- Background colors -->
-    <color name="startupBackground">#26ae90</color>
-    <color name="signinBackground">#26ae90</color>
-    <color name="signupBackground">#26ae90</color>
+    <color name="mainBackground">#26ae90</color>
 
     <!-- activity_signin layout colors -->
     <color name="input_signin">#222222</color>
