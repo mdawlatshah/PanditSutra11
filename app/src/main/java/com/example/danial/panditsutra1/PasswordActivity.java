@@ -30,6 +30,9 @@ public class PasswordActivity extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN); //enables full screen
 
+        //automatic keyboard popup
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+
         setContentView(R.layout.activity_password);
 
         firebaseAuth = FirebaseAuth.getInstance();

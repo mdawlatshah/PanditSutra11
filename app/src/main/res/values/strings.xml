@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">PanditSutra1</string>
     <string name="email_or_phone_number">Email or Phone Number</string>
+    <string name="email_password_reset"> Email</string>
     <string name="sign_up">Create a new account.</string>
     <string name="password">Password</string>
     <string name="log_in">Log In</string>
