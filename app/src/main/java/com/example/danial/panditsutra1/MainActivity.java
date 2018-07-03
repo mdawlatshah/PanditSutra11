@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -15,6 +16,8 @@ import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
@@ -25,10 +28,20 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
+
+    String takeEmail;
+    String takeName;
 
     private Button guestBtn;
     private TextView emailTxt;
@@ -72,8 +85,20 @@ public class MainActivity extends AppCompatActivity {
         LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-
                 handleFacebookToken(loginResult.getAccessToken());
+                String accessToken = loginResult.getAccessToken().getToken();
+                GraphRequest request = GraphRequest.newMeRequest(loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
+                    @Override
+                    public void onCompleted(JSONObject object, GraphResponse response) {
+                        Log.d("response", response.toString() );
+                        getData(object);
+
+                    }
+                });
+                Bundle parameters = new Bundle();
+                parameters.putString("fields", "first_name, email");
+                request.setParameters(parameters);
+                request.executeAsync();
             }
 
             @Override
@@ -87,13 +112,51 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    private void getData(JSONObject object) {
+        try{
+            URL profile_picture = new URL("http://graph.facebook.com/ " + object.getString("id"));
+            takeEmail = (object.getString("email"));
+            takeName = (object.getString("first_name"));
+
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+//    public void buttonClickFb(View v){
+//        LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+//            @Override
+//            public void onSuccess(LoginResult loginResult) {
+//
+//                handleFacebookToken(loginResult.getAccessToken());
+//            }
+//
+//            @Override
+//            public void onCancel() {
+//                Toast.makeText(MainActivity.this, "Cancelled", Toast.LENGTH_SHORT).show();
+//            }
+//
+//            @Override
+//            public void onError(FacebookException error) {
+//                Toast.makeText(getApplicationContext(),error.getMessage(), Toast.LENGTH_LONG).show();
+//            }
+//        });
+//    }
     private void handleFacebookToken(AccessToken accessToken) {
         AuthCredential credential = FacebookAuthProvider.getCredential(accessToken.getToken());
         mAuth.signInWithCredential(credential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    finish();
+
+                    FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+                    DatabaseReference myRef = firebaseDatabase.getReference(mAuth.getUid());
+                    UserProfile userProfile = new UserProfile(takeName, " ", takeEmail, " ");
+                    myRef.setValue(userProfile);
                     FirebaseUser myuserobj = mAuth.getCurrentUser();
                     Intent intent = new Intent(MainActivity.this, AfterLogIn.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
