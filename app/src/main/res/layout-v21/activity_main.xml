@@ -92,7 +92,7 @@
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/guestBtn"
+                android:id="@+id/registrationActivityBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
                 android:background="@null"

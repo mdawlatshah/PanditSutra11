@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.danial.panditsutra1.ProfileClasses.UserProfile;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -25,7 +26,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
     //this is for git
     // hello
 
-
+    private DatabaseReference mDatabase;
     private EditText firstName, email,sureName, phone,  password, repeatPass;
     private Button signUpBtn;
     private FirebaseAuth mAuth;
@@ -36,6 +37,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         setContentView(R.layout.activity_registration);
 
         setUpUIVeiws();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();
         findViewById(R.id.signUpBtn).setOnClickListener(this);
 //        signUpBtn.setOnClickListener(new View.OnClickListener() {
@@ -168,9 +170,13 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
     }
 
     private  void sendUserData(){
-        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = firebaseDatabase.getReference(mAuth.getUid());
+//        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+//        DatabaseReference myRef = firebaseDatabase.getReference();
+//        UserProfile userProfile = new UserProfile(fName, sName, eml, phn);
+        //myRef.setValue(userProfile);
         UserProfile userProfile = new UserProfile(fName, sName, eml, phn);
-        myRef.setValue(userProfile);
+        final String userId =mAuth.getUid();
+        mDatabase.child("Users").child(userId).setValue(userProfile);
+
     }
 }

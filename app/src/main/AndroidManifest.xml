@@ -11,7 +11,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        
         <activity android:name=".StartupActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -45,7 +44,9 @@
         </activity>
         <activity android:name=".PasswordActivity" />
         <activity android:name=".ProfileActivity" />
-
+        <activity android:name=".AdminFiles.AdminActivity" />
+        <activity android:name=".AdminFiles.AddPanditsActivity" />
+        <activity android:name=".AdminFiles.ViewPanditsActivity"></activity>
     </application>
 
 </manifest>

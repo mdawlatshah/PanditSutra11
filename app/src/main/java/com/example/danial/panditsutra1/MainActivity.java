@@ -13,6 +13,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.danial.panditsutra1.AdminFiles.AdminActivity;
+import com.example.danial.panditsutra1.ProfileClasses.UserProfile;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -44,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
 
     String takeEmail;
     String takeName;
+    String takeLastName;
+    String takePhone;
 
     private Button guestBtn;
     private TextView emailTxt;
@@ -64,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-        guestBtn = (Button) findViewById(R.id.guestBtn);
+        guestBtn = (Button) findViewById(R.id.registrationActivityBtn);
         passwrodTxt = (TextView) findViewById(R.id.password);
         emailTxt = (TextView) findViewById(R.id.emailEditText);
         loginBtn = (Button) findViewById(R.id.singinButton);
@@ -103,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
                 Bundle parameters = new Bundle();
-                parameters.putString("fields", "first_name, email");
+                parameters.putString("fields", "first_name,last_name, email");
                 request.setParameters(parameters);
                 request.executeAsync();
             }
@@ -124,6 +128,9 @@ public class MainActivity extends AppCompatActivity {
             URL profile_picture = new URL("http://graph.facebook.com/ " + object.getString("id"));
             takeEmail = (object.getString("email"));
             takeName = (object.getString("first_name"));
+            takeLastName = (object.getString("last_name"));
+            takePhone = (object.getString("phone"));
+
 
 
         } catch (MalformedURLException e) {
@@ -161,13 +168,16 @@ public class MainActivity extends AppCompatActivity {
                 if(task.isSuccessful()){
 
                     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-                    DatabaseReference myRef = firebaseDatabase.getReference(mAuth.getUid());
-                    UserProfile userProfile = new UserProfile(takeName, " ", takeEmail, " ");
-                    myRef.setValue(userProfile);
+                    DatabaseReference myRef = firebaseDatabase.getReference();
+                    UserProfile userProfile = new UserProfile(takeName, takeLastName, takeEmail, takePhone);
+                    myRef.child("Users").child(mAuth.getUid()).setValue(userProfile);
                     FirebaseUser myuserobj = mAuth.getCurrentUser();
                     Intent intent = new Intent(MainActivity.this, AfterLogIn.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
                     startActivity(intent);
+
+
 
                     // updateUI(myuserobj);
                 }else{
@@ -184,8 +194,13 @@ public class MainActivity extends AppCompatActivity {
     private void userLogin() {
         String email = emailTxt.getText().toString().trim();
         String password = passwrodTxt.getText().toString().trim();
-        Toast.makeText(getApplicationContext(), "Hello", Toast.LENGTH_SHORT).show();
 
+
+        if(email.equals("$$admin$$") && password.equals("Doon1234"))
+        {
+            finish();
+            startActivity(new Intent(MainActivity.this, AdminActivity.class));
+        }
         if (email.isEmpty()) {
             emailTxt.setError("Email is required");
             emailTxt.requestFocus();
@@ -211,6 +226,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
+
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -219,6 +235,7 @@ public class MainActivity extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     finish();
                     checkEmailVerification();
+
 //                    Intent intent = new Intent(MainActivity.this, AfterLogIn.class);
 //                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 //                    startActivity(intent);
@@ -233,7 +250,7 @@ public class MainActivity extends AppCompatActivity {
     public void  onClick(View v){
 
 
-        if(v.getId() == R.id.guestBtn){
+        if(v.getId() == R.id.registrationActivityBtn){
             finish();
             startActivity(new Intent(this, RegistrationActivity.class));
 
@@ -276,6 +293,7 @@ public class MainActivity extends AppCompatActivity {
         Boolean emailflag = firebaseUser.isEmailVerified();
         if(emailflag){
             finish();
+
             startActivity(new Intent(MainActivity.this, AfterLogIn.class));
         }else{
             Toast.makeText(this, "Please verify your email", Toast.LENGTH_SHORT).show();

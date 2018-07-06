@@ -1,6 +1,7 @@
-package com.example.danial.panditsutra1;
+package com.example.danial.panditsutra1.ProfileClasses;
 
 public class UserProfile {
+
 
     public  String userName;
     public String userSureName;
