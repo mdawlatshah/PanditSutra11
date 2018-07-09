@@ -12,5 +12,12 @@
     <!-- activity_startup layout strings -->
     <string name="startupLogo">Pandit Sutra</string>
 
+    <string-array name="paymentTypes">
+        <item>Premium</item>
+        <item>Paid</item>
+        <item>unPaid</item>
+
+        ></string-array>
+
 
 </resources>

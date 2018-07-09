@@ -198,7 +198,7 @@ public class MainActivity extends AppCompatActivity {
         String password = passwrodTxt.getText().toString().trim();
 
 
-        if(email.equals("$$admin$$") && password.equals("Doon1234"))
+        if(email.equals("as") && password.equals("ss"))
         {
             finish();
             startActivity(new Intent(MainActivity.this, AdminActivity.class));
