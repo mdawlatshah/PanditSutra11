@@ -4,11 +4,14 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+//import android.widget.Toolbar;
+import android.support.v7.widget.Toolbar;
 
 import com.example.danial.panditsutra1.ProfileClasses.UserProfile;
 import com.facebook.FacebookSdk;
@@ -34,7 +37,15 @@ public class AfterLogIn extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        BarColors.colorBars(this, R.color.status_bar);
+
         setContentView(R.layout.activity_after_log_in);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
         ed2 = (EditText) findViewById(R.id.textView2);
         editText = (EditText) findViewById(R.id.phoneToSend);
         firebaseAuth = FirebaseAuth.getInstance();
@@ -82,14 +93,13 @@ public class AfterLogIn extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu, menu);
-        return true;
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
-
 
         switch ((item.getItemId())){
             case R.id.logoutMenu : {

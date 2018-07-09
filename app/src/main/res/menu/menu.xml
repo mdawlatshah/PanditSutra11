@@ -1,22 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <item
-        android:id="@+id/logoutMenu"
-        android:orderInCategory="100"
-        app:showAsAction="always"
-        android:title="Signout">
+        android:id="@+id/action_search"
+        android:orderInCategory="202"
+        android:title="Search"
+        android:icon="@drawable/ic_search"
+        app:showAsAction="ifRoom">
     </item>
+
+
     <item
         android:id="@+id/profileMenu"
         android:orderInCategory="200"
         app:showAsAction="never"
         android:title="Profile">
     </item>
+
     <item
         android:id="@+id/refreshMenu"
         android:orderInCategory="300"
         app:showAsAction="never"
         android:title="Refresh">
     </item>
+
+    <item
+        android:id="@+id/logoutMenu"
+        android:orderInCategory="301"
+        android:title="Signout"></item>
+
 </menu>

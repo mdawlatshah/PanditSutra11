@@ -29,6 +29,9 @@ public class ProfileActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        BarColors.colorBars(this, R.color.status_bar);
+
         setContentView(R.layout.activity_profile);
 
         profileName = (TextView) findViewById(R.id.tvName);

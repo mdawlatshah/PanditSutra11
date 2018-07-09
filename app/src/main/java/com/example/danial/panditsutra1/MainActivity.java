@@ -61,10 +61,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        requestWindowFeature(Window.FEATURE_NO_TITLE); //will hide the title
-        getSupportActionBar().hide(); // hides the title bar
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN); //enables full screen
+//        requestWindowFeature(Window.FEATURE_NO_TITLE); //will hide the title
+//        getSupportActionBar().hide(); // hides the title bar
+//        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+//                WindowManager.LayoutParams.FLAG_FULLSCREEN); //enables full screen
+
+        BarColors.colorBars(this, R.color.black);
 
         setContentView(R.layout.activity_main);
 
@@ -87,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
         forgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    finish();
+//                    finish();
                 startActivity(new Intent(MainActivity.this, PasswordActivity.class));
             }
         });
@@ -233,7 +235,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                 if (task.isSuccessful()) {
-                    finish();
+//                    finish();
                     checkEmailVerification();
 
 //                    Intent intent = new Intent(MainActivity.this, AfterLogIn.class);
@@ -251,7 +253,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         if(v.getId() == R.id.registrationActivityBtn){
-            finish();
+//            finish();
             startActivity(new Intent(this, RegistrationActivity.class));
 
         }
@@ -292,7 +294,7 @@ public class MainActivity extends AppCompatActivity {
         FirebaseUser firebaseUser = mAuth.getInstance().getCurrentUser();
         Boolean emailflag = firebaseUser.isEmailVerified();
         if(emailflag){
-            finish();
+//            finish();
 
             startActivity(new Intent(MainActivity.this, AfterLogIn.class));
         }else{

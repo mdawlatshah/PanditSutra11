@@ -4,11 +4,13 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
     <color name="btn_background">#F3796C</color>
-
 
     <!-- Background colors -->
     <color name="mainBackground">#26ae90</color>
+    <color name="status_bar">#26ae90</color>
+    <color name="navigation_bar">#26ae90</color>
 
     <!-- activity_signin layout colors -->
     <color name="input_signin">#222222</color>
@@ -21,5 +23,11 @@
     <color name="input_signup_hint">#999999</color>
     <color name="btn_signup">#26ae90</color>
     <color name="btn_signup_bg">#eceef1</color>
+
+    <!-- toolbar and other colors -->
+    <color name="titlebar">#26ae90</color>
+    <color name="subtitle">#F3796C</color>
+    <color name="menu_popup_background">#F3796C</color>
+    <color name="menu_popup_items_background">#26ae90</color>
 
 </resources>
