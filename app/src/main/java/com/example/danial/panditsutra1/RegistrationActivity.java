@@ -25,7 +25,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class RegistrationActivity extends AppCompatActivity implements View.OnClickListener {
 
     //this is for git
-    // hello
+    // hell
     private DatabaseReference mDatabase;
     private EditText firstName, email,sureName, phone,  password, repeatPass;
     private Button signUpBtn;

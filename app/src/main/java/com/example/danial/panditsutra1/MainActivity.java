@@ -50,7 +50,6 @@ public class MainActivity extends AppCompatActivity {
     String takePhone;
 
 
-
     private Button guestBtn;
     private TextView emailTxt;
     private TextView passwrodTxt;

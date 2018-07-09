@@ -128,7 +128,6 @@
             android:textColor="@color/input_signup"
             android:textColorHint="@color/input_signup_hint"/>
 
-
         <Button
             android:id="@+id/signUpBtn"
             android:layout_width="270dp"

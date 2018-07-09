@@ -44,7 +44,6 @@ public class ProfileActivity extends AppCompatActivity {
         userId = user.getUid();
 
 
-
 //   firebaseDatabase = FirebaseDatabase.getInstance();
 
 

@@ -7,7 +7,6 @@
     tools:context=".StartupActivity"
     android:background="@color/mainBackground">
 
-
     <RelativeLayout
         android:id="@+id/StartupRelativeLayout"
         android:layout_width="match_parent"
