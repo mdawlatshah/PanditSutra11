@@ -29,6 +29,7 @@
             android:focusableInTouchMode="true">
             <requestFocus/>
 
+
             <EditText
                 android:id="@+id/emailEditText"
                 android:layout_width="280dp"

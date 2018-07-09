@@ -9,6 +9,8 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+
+
     <style name="ToolbarTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:textColorPrimary">@color/white</item>
         <item name="android:itemBackground">@color/menu_popup_background</item>

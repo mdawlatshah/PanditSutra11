@@ -6,6 +6,8 @@ import android.support.v4.content.ContextCompat;
 
 public class BarColors {
 
+
+
     //for changing navigation bar color too
 //    public static void colorBars(Activity activity, int statusColor, int navColor) {
     public static void colorBars(Activity activity, int statusColor) {

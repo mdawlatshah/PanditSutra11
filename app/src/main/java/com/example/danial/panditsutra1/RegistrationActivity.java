@@ -26,7 +26,6 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
 
     //this is for git
     // hello
-
     private DatabaseReference mDatabase;
     private EditText firstName, email,sureName, phone,  password, repeatPass;
     private Button signUpBtn;
