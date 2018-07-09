@@ -11,6 +11,8 @@
         layout="@layout/tool_bar"
         ></include>
 
+
+
     <Button
         android:id="@+id/logoutBtn"
         android:layout_width="wrap_content"

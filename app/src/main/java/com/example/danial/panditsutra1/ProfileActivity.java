@@ -43,7 +43,7 @@ public class ProfileActivity extends AppCompatActivity {
         FirebaseUser user = mAuth.getCurrentUser();
         userId = user.getUid();
 
-
+//h
 //   firebaseDatabase = FirebaseDatabase.getInstance();
 
 

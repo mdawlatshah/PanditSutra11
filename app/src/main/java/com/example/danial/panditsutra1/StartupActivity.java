@@ -12,7 +12,7 @@ public class StartupActivity extends AppCompatActivity {
     private static int SPLASH_TIME_OUT = 1000;
 
 
-
+//h
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

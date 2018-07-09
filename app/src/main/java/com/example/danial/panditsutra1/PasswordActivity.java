@@ -31,7 +31,7 @@ public class PasswordActivity extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN); //enables full screen
 
-
+//h
         BarColors.colorBars(this, R.color.status_bar);
 
         //automatic keyboard popup

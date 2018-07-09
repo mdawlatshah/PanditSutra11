@@ -75,7 +75,7 @@ public class AfterLogIn extends AppCompatActivity {
             }
 
         }) ;
-
+//h
         //////////////////////////////////////////////////////////////////////////
 //        if(myRef.child("Users").child(firebaseAuth.getUid()).child("userPhone").equals(" "))
 //        {
