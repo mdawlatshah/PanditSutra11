@@ -1,6 +1,12 @@
 package com.example.danial.panditsutra1;
 
+import android.content.Context;
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -9,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 //import android.widget.Toolbar;
 import android.support.v7.widget.Toolbar;
@@ -16,6 +23,8 @@ import android.support.v7.widget.Toolbar;
 import com.example.danial.panditsutra1.ProfileClasses.UserProfile;
 import com.facebook.FacebookSdk;
 import com.facebook.login.LoginManager;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -23,6 +32,12 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import java.util.List;
+import java.util.Locale;
+import android.content.pm.PackageManager;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+
 
 public class AfterLogIn extends AppCompatActivity {
 
@@ -34,6 +49,10 @@ public class AfterLogIn extends AppCompatActivity {
     private Button logout;
     DatabaseReference myRef;
     private FacebookAuthProvider facebookAuthProvider;
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +64,9 @@ public class AfterLogIn extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+
+
 
         ed2 = (EditText) findViewById(R.id.textView2);
         editText = (EditText) findViewById(R.id.phoneToSend);
@@ -90,7 +112,10 @@ public class AfterLogIn extends AppCompatActivity {
 
 
 
+
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

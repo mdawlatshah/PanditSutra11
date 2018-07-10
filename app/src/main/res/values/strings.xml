@@ -10,8 +10,6 @@
     <string name="fb_login_protocol_scheme">fb185362528978076</string>
 
 
-
-
     <!-- activity_startup layout strings -->
     <string name="startupLogo">Pandit Sutra</string>
 
@@ -20,7 +18,8 @@
         <item>Paid</item>
         <item>unPaid</item>
 
-        ></string-array>
+        >
+    </string-array>
 
 
 </resources>
