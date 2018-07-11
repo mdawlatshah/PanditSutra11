@@ -204,6 +204,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             finish();
             startActivity(new Intent(MainActivity.this, AdminActivity.class));
         }
+
+        if(email.equals("a") && password.equals("b"))
+        {
+            finish();
+            startActivity(new Intent(MainActivity.this, AfterLogIn.class));
+        }
+
         if (email.isEmpty()) {
             emailTxt.setError("Email is required");
             emailTxt.requestFocus();

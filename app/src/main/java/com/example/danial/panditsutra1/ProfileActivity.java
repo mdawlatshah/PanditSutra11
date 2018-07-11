@@ -137,8 +137,7 @@ public class ProfileActivity extends AppCompatActivity implements LocationListen
         try {
             Geocoder geocoder = new Geocoder(this, Locale.getDefault());
             List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
-            locationText.setText(locationText.getText() + "\n"+addresses.get(0).getAddressLine(0)+", "+
-                    addresses.get(0).getAddressLine(1)+", "+addresses.get(0).getAddressLine(2));
+            locationText.setText(locationText.getText() + "\n" + "city "+addresses.get(0).getAddressLine(0));
         }catch(Exception e)
         {
 
@@ -168,20 +167,15 @@ public class ProfileActivity extends AppCompatActivity implements LocationListen
 
     private void showData(DataSnapshot dataSnapshot) {
         for(DataSnapshot ds: dataSnapshot.getChildren()){
-            String s = ds.child(userId).child("userType").getValue().toString();
-            if(s.equals("User")){
+            UserProfile uInfo = new UserProfile();
+            uInfo.setUserName(ds.child(userId).getValue(UserProfile.class).getUserName());
+            uInfo.setUserEmail(ds.child(userId).getValue(UserProfile.class).getUserEmail());
+            uInfo.setUserPhone(ds.child(userId).getValue(UserProfile.class).getUserPhone());
+            uInfo.setUserSureName(ds.child(userId).getValue(UserProfile.class).getUserSureName());
 
-                UserProfile uInfo = new UserProfile();
-                uInfo.setUserName(ds.child(userId).getValue(UserProfile.class).getUserName());
-                uInfo.setUserEmail(ds.child(userId).getValue(UserProfile.class).getUserEmail());
-                uInfo.setUserPhone(ds.child(userId).getValue(UserProfile.class).getUserPhone());
-                uInfo.setUserSureName(ds.child(userId).getValue(UserProfile.class).getUserSureName());
-
-                profileName.setText(uInfo.getUserName() + " " + uInfo.getUserSureName());
-                profilePhone.setText(uInfo.getUserPhone());
-                profileEmail.setText(uInfo.getUserEmail());
-
-            }
+            profileName.setText(uInfo.getUserName() + " " + uInfo.getUserSureName());
+            profilePhone.setText(uInfo.getUserPhone());
+            profileEmail.setText(uInfo.getUserEmail());
 
         }
 
