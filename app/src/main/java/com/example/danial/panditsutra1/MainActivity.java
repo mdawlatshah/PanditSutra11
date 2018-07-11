@@ -42,7 +42,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Arrays;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     String takeEmail;
     String takeName;
@@ -169,10 +169,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-
+                    String userType = "User";
                     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
                     DatabaseReference myRef = firebaseDatabase.getReference();
-                    UserProfile userProfile = new UserProfile(takeName, takeLastName, takeEmail, takePhone);
+                    UserProfile userProfile = new UserProfile(userType, takeName, takeLastName, takeEmail, takePhone);
                     myRef.child("Users").child(mAuth.getUid()).setValue(userProfile);
                     FirebaseUser myuserobj = mAuth.getCurrentUser();
                     Intent intent = new Intent(MainActivity.this, AfterLogIn.class);
@@ -236,6 +236,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                 if (task.isSuccessful()) {
+
 //                    finish();
                     checkEmailVerification();
 
@@ -249,7 +250,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-
+    @Override
     public void  onClick(View v){
 
 
@@ -298,7 +299,8 @@ public class MainActivity extends AppCompatActivity {
 //            finish();
 
             startActivity(new Intent(MainActivity.this, AfterLogIn.class));
-        }else{
+        }
+        else{
             Toast.makeText(this, "Please verify your email", Toast.LENGTH_SHORT).show();
             mAuth.signOut();
 

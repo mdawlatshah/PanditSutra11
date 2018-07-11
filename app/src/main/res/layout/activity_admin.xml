@@ -7,7 +7,6 @@
     tools:context=".AdminFiles.AdminActivity">
 
 
-
     <Button
         android:id="@+id/addPandits"
         android:layout_width="135dp"
