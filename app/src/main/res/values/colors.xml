@@ -13,6 +13,7 @@
     <!-- Background colors -->
     <color name="mainBackground">#26ae90</color>
     <color name="status_bar">#26ae90</color>
+    <color name="status_bar2">#F3796C</color>
     <color name="navigation_bar">#26ae90</color>
 
     <!-- activity_signin layout colors -->

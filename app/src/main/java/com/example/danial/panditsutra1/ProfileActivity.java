@@ -49,7 +49,7 @@ public class ProfileActivity extends AppCompatActivity implements LocationListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        BarColors.colorBars(this, R.color.status_bar);
+        BarColors.colorBars(this, R.color.status_bar2);
 
         setContentView(R.layout.activity_profile);
 
@@ -92,7 +92,9 @@ public class ProfileActivity extends AppCompatActivity implements LocationListen
 
         //google location
         //getLocationBtn = (Button)findViewById(R.id.getLocationBtn);
+        //locationText = (TextView)findViewById(R.id.locationText);
         locationText = (TextView)findViewById(R.id.locationText);
+
 
 
         if (ContextCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -132,12 +134,24 @@ public class ProfileActivity extends AppCompatActivity implements LocationListen
 
     @Override
     public void onLocationChanged(Location location) {
-        locationText.setText("Latitude: " + location.getLatitude() + "\n Longitude: " + location.getLongitude());
+        //shows both latitude and longitude
+        //locationText.setText("Latitude: " + location.getLatitude() + "\n Longitude: " + location.getLongitude());
 
         try {
             Geocoder geocoder = new Geocoder(this, Locale.getDefault());
             List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
-            locationText.setText(locationText.getText() + "\n" + "city "+addresses.get(0).getAddressLine(0));
+//            locationText.setText(locationText.getText() + "\n"+addresses.get(0).getAddressLine(0) + "\nCode " +
+//                            addresses.get(0).getPostalCode());
+
+            locationText.setText(
+                    addresses.get(0).getSubThoroughfare()
+                            +", " + addresses.get(0).getThoroughfare()
+                            +"\n" + addresses.get(0).getSubLocality()
+                            +", " + addresses.get(0).getSubAdminArea()
+                            +"\n" + addresses.get(0).getAdminArea()
+                            +", " + addresses.get(0).getPostalCode()
+                            +"\n" + addresses.get(0).getCountryName());
+
         }catch(Exception e)
         {
 
