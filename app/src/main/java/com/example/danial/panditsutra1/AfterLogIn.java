@@ -1,7 +1,14 @@
 package com.example.danial.panditsutra1;
 
 import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.TabItem;
+import android.support.design.widget.TabLayout;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -36,43 +43,107 @@ public class AfterLogIn extends AppCompatActivity {
     DatabaseReference myRef;
     private FacebookAuthProvider facebookAuthProvider;
 
-
+    //tabs fragment ...
+    TabLayout tabLayout;
+    ViewPager viewPager;
+    PageAdapter pageAdapter;
+    TabItem tabChats;
+    TabItem tabStatus;
+    TabItem tabCalls;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        BarColors.colorBars(this, R.color.status_bar);
-
         setContentView(R.layout.activity_after_log_in);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
+//status bar color
+        BarColors.colorBars(this, R.color.status_bar);
+
+//toolbar
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
+//tabs fragment ...
+        tabLayout = findViewById(R.id.tabLayout);
+        tabChats = findViewById(R.id.tabChats);
+        tabStatus = findViewById(R.id.tabStatus);
+        tabCalls = findViewById(R.id.tabCalls);
+        viewPager = findViewById(R.id.viewPager);
+
+        pageAdapter = new PageAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
+        viewPager.setAdapter(pageAdapter);
+
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+                if (tab.getPosition() == 1) {
+                    toolbar.setBackgroundColor(ContextCompat.getColor(AfterLogIn.this,
+                            R.color.tab_color3));
+                    tabLayout.setBackgroundColor(ContextCompat.getColor(AfterLogIn.this,
+                            R.color.tab_color3));
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        getWindow().setStatusBarColor(ContextCompat.getColor(AfterLogIn.this,
+                                R.color.tab_color3));
+                    }
+                } else if (tab.getPosition() == 2) {
+                    toolbar.setBackgroundColor(ContextCompat.getColor(AfterLogIn.this,
+                            R.color.tab_color2));
+                    tabLayout.setBackgroundColor(ContextCompat.getColor(AfterLogIn.this,
+                            R.color.tab_color2));
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        getWindow().setStatusBarColor(ContextCompat.getColor(AfterLogIn.this,
+                                R.color.tab_color2));
+                    }
+                } else {
+                    toolbar.setBackgroundColor(ContextCompat.getColor(AfterLogIn.this,
+                            R.color.tab_color1));
+                    tabLayout.setBackgroundColor(ContextCompat.getColor(AfterLogIn.this,
+                            R.color.tab_color1));
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        getWindow().setStatusBarColor(ContextCompat.getColor(AfterLogIn.this,
+                                R.color.tab_color1));
+                    }
+                }
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+
+////////////////////////////////////////////////////////////////
 
 
-
-        ed2 = (EditText) findViewById(R.id.textView2);
-        editText = (EditText) findViewById(R.id.phoneToSend);
+        //ed2 = (EditText) findViewById(R.id.textView2);
+        //editText = (EditText) findViewById(R.id.phoneToSend);
         firebaseAuth = FirebaseAuth.getInstance();
-        logout = (Button) findViewById(R.id.logoutBtn);
+        //logout = (Button) findViewById(R.id.logoutBtn);
         FacebookSdk.sdkInitialize(getApplicationContext());
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-         myRef = firebaseDatabase.getInstance().getReference();
+        myRef = firebaseDatabase.getInstance().getReference();
         final UserProfile userProfile = new UserProfile();
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 dataSnapshot.getValue(UserProfile.class);
 
-                if(userProfile.userPhone == null)
-                {
-                    Toast.makeText(getApplicationContext(),"put num", Toast.LENGTH_LONG).show();
-                    toSend = editText.getText().toString();
-                    //Toast.makeText(getApplicationContext(),"put num", Toast.LENGTH_LONG).show();
-                }
+//                if(userProfile.userPhone == null)
+//                {
+//                    Toast.makeText(getApplicationContext(),"put num", Toast.LENGTH_LONG).show();
+//                    toSend = editText.getText().toString();
+//                    Toast.makeText(getApplicationContext(),"put num", Toast.LENGTH_LONG).show();
+//                }
 
 
             }
@@ -82,7 +153,7 @@ public class AfterLogIn extends AppCompatActivity {
 
             }
 
-        }) ;
+        });
 //h
         //////////////////////////////////////////////////////////////////////////
 //        if(myRef.child("Users").child(firebaseAuth.getUid()).child("userPhone").equals(" "))
@@ -96,11 +167,7 @@ public class AfterLogIn extends AppCompatActivity {
 //////////////////////////////////////////////////////////////////////////////////
 
 
-
-
-
     }
-
 
 
     @Override
@@ -113,8 +180,8 @@ public class AfterLogIn extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        switch ((item.getItemId())){
-            case R.id.logoutMenu : {
+        switch ((item.getItemId())) {
+            case R.id.logoutMenu: {
                 firebaseAuth.signOut();
                 LoginManager.getInstance().logOut();
                 finish();
@@ -128,6 +195,5 @@ public class AfterLogIn extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
 
     }
-
 
 }

@@ -4,19 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/mainBackground"
     tools:context=".ProfileActivity" >
 
     <include
         android:id="@+id/logo_bar"
-        layout="@layout/tool_bar2"></include>
+        layout="@layout/profile_tool_bar"></include>
 
 
 
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white">
+        android:background="@color/lightGrey">
 
 
 
@@ -30,6 +29,7 @@
                 android:id="@+id/imageView"
                 android:layout_width="88dp"
                 android:layout_height="60dp"
+                android:elevation="10dp"
                 app:srcCompat="@drawable/user_badge" />
 
             <TextView
@@ -39,11 +39,12 @@
                 android:layout_marginBottom="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginTop="8dp"
+                android:fontFamily="sans-serif"
                 android:gravity="center"
                 android:textAlignment="textStart"
                 android:textAllCaps="true"
                 android:textColor="@color/subtitle"
-                android:textSize="17sp"
+                android:textSize="15sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -63,6 +64,7 @@
                 android:id="@+id/imageView2"
                 android:layout_width="88dp"
                 android:layout_height="60dp"
+                android:elevation="10dp"
                 app:srcCompat="@drawable/email" />
 
             <TextView
@@ -72,11 +74,12 @@
                 android:layout_marginBottom="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginTop="8dp"
+                android:fontFamily="sans-serif"
                 android:gravity="center"
                 android:textAlignment="textStart"
                 android:textAllCaps="true"
                 android:textColor="@color/subtitle"
-                android:textSize="17sp"
+                android:textSize="15sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -94,6 +97,7 @@
                 android:id="@+id/imageView3"
                 android:layout_width="88dp"
                 android:layout_height="60dp"
+                android:elevation="10dp"
                 app:srcCompat="@drawable/phone_no" />
 
             <TextView
@@ -103,11 +107,12 @@
                 android:layout_marginBottom="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginTop="8dp"
+                android:fontFamily="sans-serif"
                 android:gravity="center"
                 android:textAlignment="textStart"
                 android:textAllCaps="true"
                 android:textColor="@color/subtitle"
-                android:textSize="17sp"
+                android:textSize="15sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -127,6 +132,7 @@
                 android:id="@+id/imageView4"
                 android:layout_width="88dp"
                 android:layout_height="60dp"
+                android:elevation="10dp"
                 app:srcCompat="@drawable/location" />
 
             <TextView
@@ -136,12 +142,13 @@
                 android:layout_marginBottom="8dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginTop="8dp"
+                android:fontFamily="sans-serif"
                 android:gravity="center"
                 android:text="Loading ..."
                 android:textAlignment="textStart"
                 android:textAllCaps="true"
                 android:textColor="@color/subtitle"
-                android:textSize="17sp"
+                android:textSize="15sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

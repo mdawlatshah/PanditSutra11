@@ -2,9 +2,11 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#15725e</color>
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
+    <color name="gainsboro">#DCDCDC</color>
+    <color name="lightGrey">#D3D3D3</color>
     <color name="btn_background">#F3796C</color>
 
 
@@ -33,5 +35,10 @@
     <color name="subtitle">#F3796C</color>
     <color name="menu_popup_background">#F3796C</color>
     <color name="menu_popup_items_background">#26ae90</color>
+
+    <!-- tab colors -->
+    <color name="tab_color1">#26ae90</color>
+    <color name="tab_color2">#F3796C</color>
+    <color name="tab_color3">#27aab5</color>
 
 </resources>

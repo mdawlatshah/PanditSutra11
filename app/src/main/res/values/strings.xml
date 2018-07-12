@@ -13,6 +13,12 @@
     <!-- activity_startup layout strings -->
     <string name="startupLogo">Pandit Sutra</string>
 
+    <!-- Main Page layout strings -->
+    <string name="tab1">Tab 1</string>
+    <string name="tab2">Tab 2</string>
+    <string name="tab3">Tab 3</string>
+
+
     <string-array name="paymentTypes">
         <item>Premium</item>
         <item>Paid</item>
@@ -24,7 +30,6 @@
     <string-array name="types">
 
 
-
         <item>Vastul</item>
         <item>Astrologal</item>
         <item>Sastri</item>
@@ -32,6 +37,10 @@
         <item>Mohant</item>
         <item>Jyotish</item>
 
-        ></string-array>
+        >
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
