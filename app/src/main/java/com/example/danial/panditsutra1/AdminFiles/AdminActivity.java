@@ -22,21 +22,19 @@ public class AdminActivity extends AppCompatActivity implements View.OnClickList
         addBtn = (Button) findViewById(R.id.addPandits);
         viewBtn = (Button) findViewById(R.id.viewPandits);
 
-
-
+        findViewById(R.id.addPandits).setOnClickListener(this);
 
 
     }
 
     @Override
     public void onClick(View v) {
-        if(v.getId() == R.id.addPandits)
-        {
-            startActivity(new Intent(AdminActivity.this, AddPanditsActivity.class));
+        if(v.getId() == R.id.addPandits){
+            Intent intent = new Intent(AdminActivity.this, AddPanditsActivity.class);
+            startActivity(intent);
         }
-        if(v.getId() == R.id.viewPandits)
-        {
-            startActivity(new Intent(AdminActivity.this, ViewPanditsActivity.class));
+        if(v.getId() == R.id.viewPandits){
+            startActivity(new Intent(AdminActivity.this, AddPanditsActivity.class));
         }
     }
 }

@@ -70,6 +70,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
 //            });
 //            }
 //        });
+
     }
 
     private void registerUser(){
@@ -181,7 +182,8 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
 //        DatabaseReference myRef = firebaseDatabase.getReference();
 //        UserProfile userProfile = new UserProfile(fName, sName, eml, phn);
         //myRef.setValue(userProfile);
-        UserProfile userProfile = new UserProfile(fName, sName, eml, phn);
+        String userType = "User";
+        UserProfile userProfile = new UserProfile(userType, fName, sName, eml, phn);
         final String userId =mAuth.getUid();
         mDatabase.child("Users").child(userId).setValue(userProfile);
 

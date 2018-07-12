@@ -1,21 +1,43 @@
 package com.example.danial.panditsutra1.AdminFiles;
 
+import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.danial.panditsutra1.MainActivity;
+import com.example.danial.panditsutra1.ProfileClasses.PanditProfile;
 import com.example.danial.panditsutra1.R;
 
-import java.util.ArrayList;
+import com.example.danial.panditsutra1.RegistrationActivity;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
-public class AddPanditsActivity extends AppCompatActivity {
+public class AddPanditsActivity extends AppCompatActivity{
     Spinner paymentSpinner, typeSpinner;
-    ArrayList<String> paymentArray, typeArray;
-    ArrayAdapter<String> payment_adapter, type_adapter;
+  //  ArrayList<String> paymentArray, typeArray;
+    ArrayAdapter<CharSequence> payment_adapter, type_adapter;
+
+    private DatabaseReference mDatabase;
+    private EditText etName, etEmail,etPhone, etPassword, etLocation;
+    private Button addPandit;
+    private FirebaseAuth mAuth;
+   public String pName, pEmail, pPhone, pPassword, pLocation, pType, pPaymentType, pPayment;
+    String userType = "Pandit";
+    String panditType = " ";
 
 
 
@@ -23,45 +45,50 @@ public class AddPanditsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_add_pandits);
+        etName = (EditText) findViewById(R.id.pdName);
+        etEmail = (EditText) findViewById(R.id.pdEmail);
+        etPhone = (EditText) findViewById(R.id.pdPhone);
+        etPassword = (EditText) findViewById(R.id.pdPassword);
+        etLocation = (EditText) findViewById(R.id.pdLocation);
+
+        addPandit = (Button) findViewById(R.id.addBtn);
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mAuth = FirebaseAuth.getInstance();
 
 
-        paymentArray = new ArrayList<String>();
-        paymentArray.add("Premium");
-        paymentArray.add("Paid");
-        paymentArray.add("unPaid");
-
-        typeArray = new ArrayList<String>();
-        typeArray.add("Vastul");
-        typeArray.add("Astrologal");
-        typeArray.add("Sastri");
-        typeArray.add("Byias");
-        typeArray.add("Mohant");
-        typeArray.add("Jyotish");
-
-        paymentSpinner = (Spinner) findViewById(R.id.paymentSpinner);
         typeSpinner = (Spinner) findViewById(R.id.paditsType);
+        paymentSpinner = (Spinner) findViewById(R.id.paymentSpinner);
 
+        payment_adapter = ArrayAdapter.createFromResource(this, R.array.paymentTypes,android.R.layout.simple_spinner_item);
+        type_adapter = ArrayAdapter.createFromResource(this, R.array.types,android.R.layout.simple_spinner_item);
 
-
-        payment_adapter =new ArrayAdapter<String>(getBaseContext(),android.R.layout.simple_spinner_item, paymentArray);
-        payment_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        paymentSpinner.setAdapter(payment_adapter);
-
-        type_adapter =new ArrayAdapter<String>(getBaseContext(),android.R.layout.simple_spinner_item, typeArray);
         type_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        payment_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
         typeSpinner.setAdapter(type_adapter);
+        paymentSpinner.setAdapter(payment_adapter);
 
         paymentSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                String s = parent.getItemAtPosition(position).toString();
-                    Toast.makeText(AddPanditsActivity.this,s, Toast.LENGTH_LONG).show();
+
+                pPayment = parent.getItemAtPosition(position).toString();
+                    Toast.makeText(getBaseContext(), pPayment,Toast.LENGTH_LONG).show();
+
+
+
+
                     typeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                         @Override
                         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                            String type = parent.getItemAtPosition(position).toString();
-                            Toast.makeText(AddPanditsActivity.this, type, Toast.LENGTH_LONG).show();
+                            pType = parent.getItemAtPosition(position).toString();
+
+                            panditType = pType;
+
+
+
                         }
 
                         @Override
@@ -69,7 +96,6 @@ public class AddPanditsActivity extends AppCompatActivity {
 
                         }
                     });
-
 
 
             }
@@ -80,5 +106,63 @@ public class AddPanditsActivity extends AppCompatActivity {
             }
         });
 
+
+    }
+
+
+    public void onClick(View view) {
+        pName = etName.getText().toString();
+        pEmail = etEmail.getText().toString();
+        pPhone = etPhone.getText().toString().trim();
+        pPassword = etPassword.getText().toString();
+        pLocation = etLocation.getText().toString();
+
+        mAuth.createUserWithEmailAndPassword(pEmail,pPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful()){
+
+                   // sendEmailVerification();
+
+                    Toast.makeText(getApplicationContext(), " Successfully Added", Toast.LENGTH_LONG).show();
+                    PanditProfile panditProfile = new PanditProfile(userType, pName,pEmail,pPhone,pLocation,pPayment,panditType);
+                    final String userId =mAuth.getUid();
+                    mDatabase.child("Users").child(userId).setValue(panditProfile);
+
+                }else {
+
+                    if (task.getException() instanceof FirebaseAuthUserCollisionException) {
+                        Toast.makeText(getApplicationContext(), "User is already registered", Toast.LENGTH_SHORT).show();
+
+                    } else {
+                        Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+            }
+        });
+//        etName.setText(pType);
+//        etLocation.setText(pPayment);
+    }
+    private void sendEmailVerification (){
+        FirebaseUser firebaseUser = mAuth.getCurrentUser();
+        if(firebaseUser != null){
+            firebaseUser.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if(task.isSuccessful()){
+                        Toast.makeText(AddPanditsActivity.this,"Successfully Registered, Verification mail is sent", Toast.LENGTH_SHORT).show();
+                        mAuth.signOut();
+                        finish();
+                        startActivity(new Intent(AddPanditsActivity.this, MainActivity.class));
+                    }else{
+                        Toast.makeText(AddPanditsActivity.this,"Verification mail is failed to be sent", Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+            });
+
+        }
     }
 }
+

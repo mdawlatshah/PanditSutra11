@@ -168,15 +168,20 @@ public class ProfileActivity extends AppCompatActivity implements LocationListen
 
     private void showData(DataSnapshot dataSnapshot) {
         for(DataSnapshot ds: dataSnapshot.getChildren()){
-            UserProfile uInfo = new UserProfile();
-            uInfo.setUserName(ds.child(userId).getValue(UserProfile.class).getUserName());
-            uInfo.setUserEmail(ds.child(userId).getValue(UserProfile.class).getUserEmail());
-            uInfo.setUserPhone(ds.child(userId).getValue(UserProfile.class).getUserPhone());
-            uInfo.setUserSureName(ds.child(userId).getValue(UserProfile.class).getUserSureName());
+            String s = ds.child(userId).child("userType").getValue().toString();
+            if(s.equals("User")){
 
-            profileName.setText(uInfo.getUserName() + " " + uInfo.getUserSureName());
-            profilePhone.setText(uInfo.getUserPhone());
-            profileEmail.setText(uInfo.getUserEmail());
+                UserProfile uInfo = new UserProfile();
+                uInfo.setUserName(ds.child(userId).getValue(UserProfile.class).getUserName());
+                uInfo.setUserEmail(ds.child(userId).getValue(UserProfile.class).getUserEmail());
+                uInfo.setUserPhone(ds.child(userId).getValue(UserProfile.class).getUserPhone());
+                uInfo.setUserSureName(ds.child(userId).getValue(UserProfile.class).getUserSureName());
+
+                profileName.setText(uInfo.getUserName() + " " + uInfo.getUserSureName());
+                profilePhone.setText(uInfo.getUserPhone());
+                profileEmail.setText(uInfo.getUserEmail());
+
+            }
 
         }
 
