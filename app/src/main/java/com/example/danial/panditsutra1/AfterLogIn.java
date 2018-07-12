@@ -18,9 +18,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.danial.panditsutra1.ProfileClasses.PanditProfile;
 import com.example.danial.panditsutra1.ProfileClasses.UserProfile;
 import com.facebook.FacebookSdk;
 import com.facebook.login.LoginManager;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -42,6 +46,7 @@ public class AfterLogIn extends AppCompatActivity {
     private Button logout;
     DatabaseReference myRef;
     private FacebookAuthProvider facebookAuthProvider;
+    private FirebaseAuth mAuth;
 
     //tabs fragment ...
     TabLayout tabLayout;
@@ -64,6 +69,7 @@ public class AfterLogIn extends AppCompatActivity {
         final Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+////
 
 //tabs fragment ...
         tabLayout = findViewById(R.id.tabLayout);
@@ -114,6 +120,9 @@ public class AfterLogIn extends AppCompatActivity {
 
             }
 
+        mAuth = FirebaseAuth.getInstance();
+        ed2 = (EditText) findViewById(R.id.textView2);
+        editText = (EditText) findViewById(R.id.phoneToSend);
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
 
@@ -128,22 +137,22 @@ public class AfterLogIn extends AppCompatActivity {
         //ed2 = (EditText) findViewById(R.id.textView2);
         //editText = (EditText) findViewById(R.id.phoneToSend);
         firebaseAuth = FirebaseAuth.getInstance();
-        //logout = (Button) findViewById(R.id.logoutBtn);
+        logout = (Button) findViewById(R.id.logoutBtn);
         FacebookSdk.sdkInitialize(getApplicationContext());
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        myRef = firebaseDatabase.getInstance().getReference();
-        final UserProfile userProfile = new UserProfile();
+        FirebaseApp.initializeApp(this);
+         myRef = firebaseDatabase.getInstance().getReference().child("Users");
+        final PanditProfile userProfile = new PanditProfile();
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                dataSnapshot.getValue(UserProfile.class);
-
-//                if(userProfile.userPhone == null)
-//                {
-//                    Toast.makeText(getApplicationContext(),"put num", Toast.LENGTH_LONG).show();
-//                    toSend = editText.getText().toString();
-//                    Toast.makeText(getApplicationContext(),"put num", Toast.LENGTH_LONG).show();
-//                }
+                String passc = dataSnapshot.child(mAuth.getUid()).child("userType").getValue().toString();
+                if(passc.equals("Pandit")){
+                    Toast.makeText(getApplicationContext(), "Yess", Toast.LENGTH_LONG).show();
+                }
+                else{
+                 Toast.makeText(getApplicationContext(),"Users checked", Toast.LENGTH_LONG).show();
+                }
 
 
             }
@@ -153,7 +162,7 @@ public class AfterLogIn extends AppCompatActivity {
 
             }
 
-        });
+        }) ;
 //h
         //////////////////////////////////////////////////////////////////////////
 //        if(myRef.child("Users").child(firebaseAuth.getUid()).child("userPhone").equals(" "))
@@ -167,7 +176,11 @@ public class AfterLogIn extends AppCompatActivity {
 //////////////////////////////////////////////////////////////////////////////////
 
 
+
+
+
     }
+
 
 
     @Override
@@ -195,5 +208,6 @@ public class AfterLogIn extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
 
     }
+
 
 }

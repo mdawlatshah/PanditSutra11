@@ -30,6 +30,19 @@
     <string-array name="types">
 
 
+
+    <item>Vastul</item>
+    <item>Astrologal</item>
+    <item>Sastri</item>
+    <item>Byias</item>
+    <item>Mohant</item>
+    <item>Jyotish</item>
+
+        ></string-array>
+
+    <string-array name="types">
+
+
         <item>Vastul</item>
         <item>Astrologal</item>
         <item>Sastri</item>
