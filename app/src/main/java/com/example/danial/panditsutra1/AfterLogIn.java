@@ -69,7 +69,10 @@ public class AfterLogIn extends AppCompatActivity {
         final Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+
 ////
+
+
 
 //tabs fragment ...
         tabLayout = findViewById(R.id.tabLayout);
@@ -120,9 +123,7 @@ public class AfterLogIn extends AppCompatActivity {
 
             }
 
-        mAuth = FirebaseAuth.getInstance();
-        ed2 = (EditText) findViewById(R.id.textView2);
-        editText = (EditText) findViewById(R.id.phoneToSend);
+
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
 
@@ -133,11 +134,13 @@ public class AfterLogIn extends AppCompatActivity {
 
 ////////////////////////////////////////////////////////////////
 
+        mAuth = FirebaseAuth.getInstance();
+//        ed2 = (EditText) findViewById(R.id.textView2);
+//        editText = (EditText) findViewById(R.id.phoneToSend);
 
-        //ed2 = (EditText) findViewById(R.id.textView2);
-        //editText = (EditText) findViewById(R.id.phoneToSend);
+
         firebaseAuth = FirebaseAuth.getInstance();
-        logout = (Button) findViewById(R.id.logoutBtn);
+        //logout = (Button) findViewById(R.id.logoutBtn);
         FacebookSdk.sdkInitialize(getApplicationContext());
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         FirebaseApp.initializeApp(this);
