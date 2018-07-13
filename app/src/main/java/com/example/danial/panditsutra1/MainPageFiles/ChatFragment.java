@@ -1,4 +1,4 @@
-package com.example.danial.panditsutra1;
+package com.example.danial.panditsutra1.MainPageFiles;
 
 
 import android.os.Bundle;
@@ -9,6 +9,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.danial.panditsutra1.R;
 
 public class ChatFragment extends Fragment {
 

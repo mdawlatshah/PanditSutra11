@@ -49,7 +49,7 @@ public class ProfileActivity extends AppCompatActivity implements LocationListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        BarColors.colorBars(this, R.color.status_bar2);
+        BarColors.colorBars(this, R.color.status_bar);
 
         setContentView(R.layout.activity_profile);
 

@@ -4,25 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".ProfileActivity" >
 
     <include
         android:id="@+id/logo_bar"
-        layout="@layout/profile_tool_bar"></include>
+        layout="@layout/profile_tool_bar">
 
+    </include>
 
 
     <TableLayout
+        android:id="@+id/tableLayout2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/lightGrey">
-
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:layout_constraintTop_toBottomOf="@+id/logo_bar"
+        tools:layout_editor_absoluteX="0dp">
 
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="150dp"
+            android:layout_marginTop="20dp"
             android:gravity="center_vertical">
 
             <ImageView
@@ -30,7 +34,7 @@
                 android:layout_width="88dp"
                 android:layout_height="60dp"
                 android:elevation="10dp"
-                app:srcCompat="@drawable/user_badge" />
+                app:srcCompat="@drawable/user_badge_green" />
 
             <TextView
                 android:id="@+id/tvName"
@@ -44,7 +48,7 @@
                 android:textAlignment="textStart"
                 android:textAllCaps="true"
                 android:textColor="@color/subtitle"
-                android:textSize="15sp"
+                android:textSize="14sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -65,7 +69,7 @@
                 android:layout_width="88dp"
                 android:layout_height="60dp"
                 android:elevation="10dp"
-                app:srcCompat="@drawable/email" />
+                app:srcCompat="@drawable/email_green" />
 
             <TextView
                 android:id="@+id/tvEmail"
@@ -79,7 +83,7 @@
                 android:textAlignment="textStart"
                 android:textAllCaps="true"
                 android:textColor="@color/subtitle"
-                android:textSize="15sp"
+                android:textSize="14sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -98,7 +102,7 @@
                 android:layout_width="88dp"
                 android:layout_height="60dp"
                 android:elevation="10dp"
-                app:srcCompat="@drawable/phone_no" />
+                app:srcCompat="@drawable/phone_no_green" />
 
             <TextView
                 android:id="@+id/tvPhoneNum"
@@ -112,7 +116,7 @@
                 android:textAlignment="textStart"
                 android:textAllCaps="true"
                 android:textColor="@color/subtitle"
-                android:textSize="15sp"
+                android:textSize="14sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -133,7 +137,7 @@
                 android:layout_width="88dp"
                 android:layout_height="60dp"
                 android:elevation="10dp"
-                app:srcCompat="@drawable/location" />
+                app:srcCompat="@drawable/location_green" />
 
             <TextView
                 android:id="@+id/locationText"
@@ -148,7 +152,7 @@
                 android:textAlignment="textStart"
                 android:textAllCaps="true"
                 android:textColor="@color/subtitle"
-                android:textSize="15sp"
+                android:textSize="14sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -159,6 +163,17 @@
         </TableRow>
 
     </TableLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/mainBackground"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="@string/powered_by"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="0dp" />
 
 
     <!-- location button on click -->

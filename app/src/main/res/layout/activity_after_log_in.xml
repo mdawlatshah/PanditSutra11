@@ -7,46 +7,66 @@
     android:orientation="vertical"
     tools:context=".AfterLogIn">
 
+
     <include
         android:id="@+id/tool_bar"
         layout="@layout/search_tool_bar"></include>
 
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewPagerSponsors"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="@color/white"/>
+
+    <LinearLayout
+        android:id="@+id/SliderDots"
+        android:layout_width="match_parent"
+        android:layout_height="13dp"
+        android:background="@color/mainBackground"
+        android:gravity="center_vertical|center_horizontal"
+        android:orientation="horizontal">
+
+    </LinearLayout>
+
+
     <android.support.design.widget.TabLayout
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
         android:background="@color/mainBackground"
+        android:elevation="2dp"
         app:tabSelectedTextColor="@color/white"
         app:tabTextAppearance="@style/TextAppearance.AppCompat.Button"
         app:tabTextColor="@android:color/black">
 
         <android.support.design.widget.TabItem
-            android:id="@+id/tabChats"
+            android:id="@+id/tabPandits"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Chats" />
+            android:text="Pandits" />
 
         <android.support.design.widget.TabItem
-            android:id="@+id/tabStatus"
+            android:id="@+id/tabKundli"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Status" />
+            android:text="Kundli" />
 
         <android.support.design.widget.TabItem
-            android:id="@+id/tabCalls"
+            android:id="@+id/tabOther"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Calls" />
+            android:text="Other" />
 
     </android.support.design.widget.TabLayout>
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/viewPager"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewPagerMain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    </android.support.v4.view.ViewPager>
+        </android.support.v4.view.ViewPager>
 
 
 
-</LinearLayout>
+    </LinearLayout>

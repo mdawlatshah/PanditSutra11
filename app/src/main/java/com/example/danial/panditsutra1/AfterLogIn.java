@@ -1,13 +1,11 @@
 package com.example.danial.panditsutra1;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.TabItem;
 import android.support.design.widget.TabLayout;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -16,14 +14,14 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.example.danial.panditsutra1.MainPageFiles.ViewPagerAdapter;
 import com.example.danial.panditsutra1.ProfileClasses.PanditProfile;
-import com.example.danial.panditsutra1.ProfileClasses.UserProfile;
 import com.facebook.FacebookSdk;
 import com.facebook.login.LoginManager;
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationCallback;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
@@ -32,6 +30,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 //import android.widget.Toolbar;
 
@@ -50,11 +51,18 @@ public class AfterLogIn extends AppCompatActivity {
 
     //tabs fragment ...
     TabLayout tabLayout;
-    ViewPager viewPager;
-    PageAdapter pageAdapter;
-    TabItem tabChats;
-    TabItem tabStatus;
-    TabItem tabCalls;
+    ViewPager viewPagerMain;
+    MainTabsPageAdapter mainTabsPageAdapter;
+    TabItem tabPandits;
+    TabItem tabKundli;
+    TabItem tabOther;
+
+//sponsors image slide
+    LinearLayout sponsorsLayout;
+    ViewPager viewPagerSponsors;
+    LinearLayout sliderDotsPanel;
+    private int dotsCount;
+    private ImageView[] dots;
 
 
     @Override
@@ -70,29 +78,32 @@ public class AfterLogIn extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-////
-
-
+////sponsors Layout
+        sponsorsLayout = findViewById(R.id.SliderDots);
 
 //tabs fragment ...
         tabLayout = findViewById(R.id.tabLayout);
-        tabChats = findViewById(R.id.tabChats);
-        tabStatus = findViewById(R.id.tabStatus);
-        tabCalls = findViewById(R.id.tabCalls);
-        viewPager = findViewById(R.id.viewPager);
+        tabPandits = findViewById(R.id.tabPandits);
+        tabKundli = findViewById(R.id.tabKundli);
+        tabOther = findViewById(R.id.tabOther);
+        viewPagerMain = findViewById(R.id.viewPagerMain);
 
-        pageAdapter = new PageAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
-        viewPager.setAdapter(pageAdapter);
+
+        mainTabsPageAdapter = new MainTabsPageAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
+        viewPagerMain.setAdapter(mainTabsPageAdapter);
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                viewPager.setCurrentItem(tab.getPosition());
+                viewPagerMain.setCurrentItem(tab.getPosition());
                 if (tab.getPosition() == 1) {
                     toolbar.setBackgroundColor(ContextCompat.getColor(AfterLogIn.this,
                             R.color.tab_color3));
                     tabLayout.setBackgroundColor(ContextCompat.getColor(AfterLogIn.this,
                             R.color.tab_color3));
+                    sponsorsLayout.setBackgroundColor(ContextCompat.getColor(AfterLogIn.this,
+                            R.color.tab_color3));
+
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                         getWindow().setStatusBarColor(ContextCompat.getColor(AfterLogIn.this,
                                 R.color.tab_color3));
@@ -102,6 +113,8 @@ public class AfterLogIn extends AppCompatActivity {
                             R.color.tab_color2));
                     tabLayout.setBackgroundColor(ContextCompat.getColor(AfterLogIn.this,
                             R.color.tab_color2));
+                    sponsorsLayout.setBackgroundColor(ContextCompat.getColor(AfterLogIn.this,
+                            R.color.tab_color2));
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                         getWindow().setStatusBarColor(ContextCompat.getColor(AfterLogIn.this,
                                 R.color.tab_color2));
@@ -110,6 +123,8 @@ public class AfterLogIn extends AppCompatActivity {
                     toolbar.setBackgroundColor(ContextCompat.getColor(AfterLogIn.this,
                             R.color.tab_color1));
                     tabLayout.setBackgroundColor(ContextCompat.getColor(AfterLogIn.this,
+                            R.color.tab_color1));
+                    sponsorsLayout.setBackgroundColor(ContextCompat.getColor(AfterLogIn.this,
                             R.color.tab_color1));
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                         getWindow().setStatusBarColor(ContextCompat.getColor(AfterLogIn.this,
@@ -130,10 +145,63 @@ public class AfterLogIn extends AppCompatActivity {
             }
         });
 
-        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        viewPagerMain.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
-////////////////////////////////////////////////////////////////
 
+// sponsors image slider - viewpageradapter
+        viewPagerSponsors = findViewById(R.id.viewPagerSponsors);
+
+        sliderDotsPanel = (LinearLayout) findViewById(R.id.SliderDots);
+
+        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(this);
+        viewPagerSponsors.setAdapter(viewPagerAdapter);
+
+        dotsCount = viewPagerAdapter.getCount();
+        dots = new ImageView[dotsCount];
+
+        for (int i = 0; i < dotsCount; i++) {
+            dots[i] = new ImageView(this);
+            dots[i].setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.nonactive_dot));
+
+
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
+                                    LinearLayout.LayoutParams.WRAP_CONTENT);
+
+            params.setMargins(8, 0, 8, 0);
+
+            sliderDotsPanel.addView(dots[i], params);
+        }
+
+        dots[0].setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.active_dot));
+
+        viewPagerSponsors.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                for (int i = 0; i < dotsCount; i++) {
+                    dots[i].setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),
+                            R.drawable.nonactive_dot));
+                }
+
+                dots[position].setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),
+                        R.drawable.active_dot));
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(new MyTimerTask(), 3000, 5000);
+
+
+//
         mAuth = FirebaseAuth.getInstance();
 //        ed2 = (EditText) findViewById(R.id.textView2);
 //        editText = (EditText) findViewById(R.id.phoneToSend);
@@ -184,8 +252,30 @@ public class AfterLogIn extends AppCompatActivity {
 
     }
 
+//    sponsors image auto slide using viewPagerAdapter
+    public class MyTimerTask extends TimerTask {
+
+        @Override
+        public void run() {
+
+            AfterLogIn.this.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if (viewPagerSponsors.getCurrentItem() == 0) {
+                        viewPagerSponsors.setCurrentItem(1);
+                    } else if (viewPagerSponsors.getCurrentItem() == 1) {
+                        viewPagerSponsors.setCurrentItem(2);
+                    } else {
+                        viewPagerSponsors.setCurrentItem(0);
+                    }
+                }
+            });
+
+        }
+    }
 
 
+//
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
