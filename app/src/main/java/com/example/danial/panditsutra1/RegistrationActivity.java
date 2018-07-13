@@ -43,6 +43,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
 
         setContentView(R.layout.activity_registration);
 
+
         setUpUIVeiws();
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();

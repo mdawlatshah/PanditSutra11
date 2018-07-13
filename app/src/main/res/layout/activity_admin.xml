@@ -25,7 +25,7 @@
         app:layout_constraintVertical_bias="0.512" />
 
     <Button
-        android:id="@+id/viewPandits"
+        android:id="@+id/addKundliPandit"
         android:layout_width="135dp"
         android:layout_height="60dp"
         android:layout_marginBottom="8dp"
@@ -33,7 +33,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:onClick="onClick"
-        android:text="View Pandits"
+        android:text="Add Kundli Pandit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/addPandits"

@@ -20,7 +20,7 @@ public class AdminActivity extends AppCompatActivity implements View.OnClickList
         Toast.makeText(getApplicationContext(), "Hello to Admin View", Toast.LENGTH_LONG).show();
 
         addBtn = (Button) findViewById(R.id.addPandits);
-        viewBtn = (Button) findViewById(R.id.viewPandits);
+        viewBtn = (Button) findViewById(R.id.addKundliPandit);
 
         findViewById(R.id.addPandits).setOnClickListener(this);
 
@@ -33,8 +33,8 @@ public class AdminActivity extends AppCompatActivity implements View.OnClickList
             Intent intent = new Intent(AdminActivity.this, AddPanditsActivity.class);
             startActivity(intent);
         }
-        if(v.getId() == R.id.viewPandits){
-            startActivity(new Intent(AdminActivity.this, AddPanditsActivity.class));
+        if(v.getId() == R.id.addKundliPandit){
+            startActivity(new Intent(AdminActivity.this, AddKundliPanditActivity.class));
         }
     }
 }

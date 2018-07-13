@@ -18,6 +18,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.example.danial.panditsutra1.AdminFiles.KundliPanditProfileActivity;
+import com.example.danial.panditsutra1.AdminFiles.PanditProfileActivity;
+import com.example.danial.panditsutra1.ProfileClasses.KundliPandit;
 import com.example.danial.panditsutra1.MainPageFiles.ViewPagerAdapter;
 import com.example.danial.panditsutra1.ProfileClasses.PanditProfile;
 import com.facebook.FacebookSdk;
@@ -77,6 +80,9 @@ public class AfterLogIn extends AppCompatActivity {
         final Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+////
+////
 
 ////sponsors Layout
         sponsorsLayout = findViewById(R.id.SliderDots);
@@ -214,13 +220,20 @@ public class AfterLogIn extends AppCompatActivity {
         FirebaseApp.initializeApp(this);
          myRef = firebaseDatabase.getInstance().getReference().child("Users");
         final PanditProfile userProfile = new PanditProfile();
+        final KundliPandit kundllProfile = new KundliPandit();
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String passc = dataSnapshot.child(mAuth.getUid()).child("userType").getValue().toString();
                 if(passc.equals("Pandit")){
                     Toast.makeText(getApplicationContext(), "Yess", Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(AfterLogIn.this, PanditProfileActivity.class));
+                } if(passc.equals("Kundli_Pandit"))
+                {
+                    Toast.makeText(getApplicationContext(), "Kundli Pandit", Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(AfterLogIn.this, KundliPanditProfileActivity.class));
                 }
+
                 else{
                  Toast.makeText(getApplicationContext(),"Users checked", Toast.LENGTH_LONG).show();
                 }

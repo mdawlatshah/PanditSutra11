@@ -5,11 +5,11 @@ import android.os.Bundle;
 
 import com.example.danial.panditsutra1.R;
 
-public class ViewPanditsActivity extends AppCompatActivity {
+public class KundliPanditProfileActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_pandits);
+        setContentView(R.layout.activity_kundli_pandit_profile2);
     }
 }

@@ -16,7 +16,6 @@ import com.example.danial.panditsutra1.MainActivity;
 import com.example.danial.panditsutra1.ProfileClasses.PanditProfile;
 import com.example.danial.panditsutra1.R;
 
-import com.example.danial.panditsutra1.RegistrationActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -51,7 +50,7 @@ public class AddPanditsActivity extends AppCompatActivity{
         etPassword = (EditText) findViewById(R.id.pdPassword);
         etLocation = (EditText) findViewById(R.id.pdLocation);
 
-        addPandit = (Button) findViewById(R.id.addBtn);
+        addPandit = (Button) findViewById(R.id.addKPandit);
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();
@@ -122,7 +121,7 @@ public class AddPanditsActivity extends AppCompatActivity{
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
 
-                   // sendEmailVerification();
+                   sendEmailVerification();
 
                     Toast.makeText(getApplicationContext(), " Successfully Added", Toast.LENGTH_LONG).show();
                     PanditProfile panditProfile = new PanditProfile(userType, pName,pEmail,pPhone,pLocation,pPayment,panditType);

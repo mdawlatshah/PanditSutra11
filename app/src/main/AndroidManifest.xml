@@ -12,8 +12,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-
-
         <activity android:name=".StartupActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -49,8 +47,9 @@
         <activity android:name=".ProfileActivity" />
         <activity android:name=".AdminFiles.AdminActivity" />
         <activity android:name=".AdminFiles.AddPanditsActivity" />
-        <activity android:name=".AdminFiles.ViewPanditsActivity" />
-
+        <activity android:name=".AdminFiles.AddKundliPanditActivity" />
+        <activity android:name=".AdminFiles.PanditProfileActivity" />
+        <activity android:name=".AdminFiles.KundliPanditProfileActivity"></activity>
     </application>
 
 </manifest>
