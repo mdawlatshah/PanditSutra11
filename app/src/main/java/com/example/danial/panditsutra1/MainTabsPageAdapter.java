@@ -4,9 +4,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.example.danial.panditsutra1.MainPageFiles.CallFragment;
-import com.example.danial.panditsutra1.MainPageFiles.ChatFragment;
-import com.example.danial.panditsutra1.MainPageFiles.StatusFragment;
+import com.example.danial.panditsutra1.MainPageFiles.PanditsFragment;
+import com.example.danial.panditsutra1.MainPageFiles.KundliFragment;
+import com.example.danial.panditsutra1.MainPageFiles.OtherFragment;
 
 class MainTabsPageAdapter extends FragmentPagerAdapter{
     private int numOfTabs;
@@ -20,11 +20,11 @@ class MainTabsPageAdapter extends FragmentPagerAdapter{
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return new ChatFragment();
+                return new PanditsFragment();
             case 1:
-                return new StatusFragment();
+                return new KundliFragment();
             case 2:
-                return new CallFragment();
+                return new OtherFragment();
             default:
                 return null;
         }
