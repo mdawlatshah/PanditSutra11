@@ -21,6 +21,9 @@ import android.widget.Toast;
 import com.example.danial.panditsutra1.AdminFiles.KundliPanditProfileActivity;
 import com.example.danial.panditsutra1.AdminFiles.PanditProfileActivity;
 import com.example.danial.panditsutra1.ProfileClasses.KundliPandit;
+import com.example.danial.panditsutra1.AdminFiles.KundliPanditProfileActivity;
+import com.example.danial.panditsutra1.AdminFiles.PanditProfileActivity;
+import com.example.danial.panditsutra1.ProfileClasses.KundliPandit;
 import com.example.danial.panditsutra1.MainPageFiles.ViewPagerAdapter;
 import com.example.danial.panditsutra1.ProfileClasses.PanditProfile;
 import com.facebook.FacebookSdk;
@@ -86,6 +89,8 @@ public class AfterLogIn extends AppCompatActivity {
 
 ////sponsors Layout
         sponsorsLayout = findViewById(R.id.SliderDots);
+////
+
 
 //tabs fragment ...
         tabLayout = findViewById(R.id.tabLayout);

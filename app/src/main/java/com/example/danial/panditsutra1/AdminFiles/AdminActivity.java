@@ -11,7 +11,8 @@ import com.example.danial.panditsutra1.R;
 
 public class AdminActivity extends AppCompatActivity implements View.OnClickListener {
     private Button addBtn;
-    private Button viewBtn;
+    private Button addKundli;
+    private  Button viewPandits;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,7 +21,8 @@ public class AdminActivity extends AppCompatActivity implements View.OnClickList
         Toast.makeText(getApplicationContext(), "Hello to Admin View", Toast.LENGTH_LONG).show();
 
         addBtn = (Button) findViewById(R.id.addPandits);
-        viewBtn = (Button) findViewById(R.id.addKundliPandit);
+        addKundli = (Button) findViewById(R.id.addKundliPandit);
+        viewPandits = (Button) findViewById(R.id.viewPandit);
 
         findViewById(R.id.addPandits).setOnClickListener(this);
 
@@ -35,6 +37,10 @@ public class AdminActivity extends AppCompatActivity implements View.OnClickList
         }
         if(v.getId() == R.id.addKundliPandit){
             startActivity(new Intent(AdminActivity.this, AddKundliPanditActivity.class));
+        }
+        if(v.getId() == R.id.viewPandit)
+        {
+            startActivity(new Intent(AdminActivity.this, ViewPanditActivity.class));
         }
     }
 }
