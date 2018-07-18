@@ -1,5 +1,7 @@
 package com.example.danial.panditsutra1.ProfileClasses;
 
+import android.widget.ImageView;
+
 public class PanditProfile {
     public String userType;
 
@@ -11,6 +13,8 @@ public class PanditProfile {
     public String location;
     public String paymentType;
     public String type;
+    
+
     public PanditProfile(){
 
     }

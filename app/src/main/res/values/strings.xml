@@ -46,4 +46,22 @@
     <!-- powered by text -->
     <string name="powered_by">Powered by Davay Digital Media LLP</string>
 
+
+    <!-- Rashifal - Horoscope -->
+    <string name="aries">Aries</string>
+    <string name="taurus">Aries</string>
+    <string name="gemini">Aries</string>
+    <string name="cancer">Aries</string>
+    <string name="leo">Aries</string>
+    <string name="virgo">Aries</string>
+    <string name="libra">Aries</string>
+    <string name="scorpio">Aries</string>
+    <string name="sagittarius">Aries</string>
+    <string name="capricorn">Aries</string>
+    <string name="aquarius">Aries</string>
+    <string name="pisces">Aries</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment"></string>
+
 </resources>

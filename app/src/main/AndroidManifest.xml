@@ -7,8 +7,10 @@
 
     <application
         android:allowBackup="true"
+        android:hardwareAccelerated="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
@@ -51,10 +53,9 @@
         <activity android:name=".AdminFiles.PanditProfileActivity" />
         <activity android:name=".AdminFiles.KundliPanditProfileActivity" />
         <activity android:name=".PanditsClasses.PanditsActivity" />
-        <activity android:name=".AdminFiles.AddKundliPanditActivity" />
-        <activity android:name=".AdminFiles.PanditProfileActivity" />
-        <activity android:name=".AdminFiles.KundliPanditProfileActivity" />
-        <activity android:name=".AdminFiles.ViewPanditActivity"></activity>
+        <activity android:name=".RashifalFiles.RashifalActivity" />
+        <activity android:name=".AdminFiles.ViewPanditActivity" />
+        <activity android:name=".AdminFiles.AddSponsorPhotosActivity"></activity>
     </application>
 
 </manifest>
