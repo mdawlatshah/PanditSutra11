@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     String takeEmail;
     String takeName;
     String takeLastName;
-    String takePhone;
+    String takePhone = " ";
 
 //h
     private Button guestBtn;
@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             takeEmail = (object.getString("email"));
             takeName = (object.getString("first_name"));
             takeLastName = (object.getString("last_name"));
-            takePhone = (object.getString("phone"));
+          //  takePhone = (object.getString("phone"));
 
 
 

@@ -85,7 +85,12 @@ public class ProfileActivity extends AppCompatActivity implements LocationListen
 //            }
                 profileName.setText(dataSnapshot.child(userId).child("userName").getValue().toString()  + " " + dataSnapshot.child(userId).child("userSureName").getValue().toString()  );
                 profileEmail.setText(dataSnapshot.child(userId).child("userEmail").getValue().toString() );
-                profilePhone.setText(dataSnapshot.child(userId).child("userPhone").getValue().toString() );
+                String phone = dataSnapshot.child(userId).child("userPhone").getValue().toString();
+                if(!(phone.isEmpty()))
+                {
+                    profilePhone.setText(dataSnapshot.child(userId).child("userPhone").getValue().toString() );
+                }
+
                 uInfo.setUserPhone(dataSnapshot.child(userId).child("userPhone").getValue().toString());
                 Toast.makeText(getApplicationContext(), uInfo.getUserPhone(),Toast.LENGTH_LONG).show();
 
