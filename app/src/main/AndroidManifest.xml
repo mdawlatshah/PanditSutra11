@@ -52,7 +52,7 @@
         <activity android:name=".AdminFiles.AddKundliPanditActivity" />
         <activity android:name=".AdminFiles.PanditProfileActivity" />
         <activity android:name=".AdminFiles.KundliPanditProfileActivity" />
-        <activity android:name=".PanditsClasses.PanditsActivity" />
+        <activity android:name=".PanditsClasses.UserViewPanditsActivity" />
         <activity android:name=".RashifalFiles.RashifalActivity" />
         <activity android:name=".AdminFiles.ViewPanditActivity" />
         <activity android:name=".AdminFiles.AddSponsorPhotosActivity"></activity>

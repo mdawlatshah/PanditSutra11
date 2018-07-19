@@ -1,5 +1,5 @@
 package com.example.danial.panditsutra1.MainPageFiles;
-import com.example.danial.panditsutra1.PanditsClasses.PanditsActivity;
+import com.example.danial.panditsutra1.PanditsClasses.UserViewPanditsActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -70,7 +70,7 @@ public class PanditsFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View view) {
 
-        Intent intent = new Intent(getActivity(), PanditsActivity.class);
+        Intent intent = new Intent(getActivity(), UserViewPanditsActivity.class);
         startActivity(intent);
 
         //in case they have different layouts ...

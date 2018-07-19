@@ -44,6 +44,7 @@ public class ProfileActivity extends AppCompatActivity implements LocationListen
     //Button getLocationBtn;
     TextView locationText;
     LocationManager locationManager;
+    UserProfile uInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,34 +53,50 @@ public class ProfileActivity extends AppCompatActivity implements LocationListen
         BarColors.colorBars(this, R.color.status_bar);
 
         setContentView(R.layout.activity_profile);
-
+        uInfo = new UserProfile();
         profileName = (TextView) findViewById(R.id.tvName);
         profileEmail = (TextView) findViewById(R.id.tvEmail);
         profilePhone = (TextView) findViewById(R.id.tvPhoneNum);
         mAuth = FirebaseAuth.getInstance();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         myRef = mFirebaseDatabase.getReference();
-        FirebaseUser user = mAuth.getCurrentUser();
+        final FirebaseUser user = mAuth.getCurrentUser();
         userId = user.getUid();
 
-//h
-//   firebaseDatabase = FirebaseDatabase.getInstance();
 
-
-
-//        DatabaseReference databaseReference = firebaseDatabase.getReference().child("user").child(firebaseAuth.getUid());
-// not important        mDatabase.child("users").child(userId).setValue();
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-
-            }
-        };
-        myRef.addValueEventListener(new ValueEventListener() {
+        myRef.child("Users").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                showData(dataSnapshot);
-            }
+
+
+//            String s = ds.child(userId).child("userType").getValue().toString();
+//            if(s.equals("User")){
+//
+//                UserProfile uInfo = new UserProfile();
+//                uInfo.setUserName(ds.child(userId).getValue(UserProfile.class).getUserName());
+//                uInfo.setUserEmail(ds.child(userId).getValue(UserProfile.class).getUserEmail());
+//                uInfo.setUserPhone(ds.child(userId).getValue(UserProfile.class).getUserPhone());
+//                uInfo.setUserSureName(ds.child(userId).getValue(UserProfile.class).getUserSureName());
+//
+//                profileName.setText(uInfo.getUserName() + " " + uInfo.getUserSureName());
+//                profilePhone.setText(uInfo.getUserPhone());
+//                profileEmail.setText(uInfo.getUserEmail());
+//                  userSureName
+//            }
+                profileName.setText(dataSnapshot.child(userId).child("userName").getValue().toString()  + " " + dataSnapshot.child(userId).child("userSureName").getValue().toString()  );
+                profileEmail.setText(dataSnapshot.child(userId).child("userEmail").getValue().toString() );
+                profilePhone.setText(dataSnapshot.child(userId).child("userPhone").getValue().toString() );
+                uInfo.setUserPhone(dataSnapshot.child(userId).child("userPhone").getValue().toString());
+                Toast.makeText(getApplicationContext(), uInfo.getUserPhone(),Toast.LENGTH_LONG).show();
+
+//                        profilePhone.setText(uInfo.getUserPhone().toString());
+//                        profileEmail.setText(uInfo.getUserEmail().toString());
+
+
+
+
+
+                }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
@@ -177,40 +194,4 @@ public class ProfileActivity extends AppCompatActivity implements LocationListen
 
     ////////////////////////////////////////////////////////////////////
 
-
-
-    private void showData(DataSnapshot dataSnapshot) {
-        for(DataSnapshot ds: dataSnapshot.getChildren()){
-            String s = ds.child(userId).child("userType").getValue().toString();
-            if(s.equals("User")){
-
-                UserProfile uInfo = new UserProfile();
-                uInfo.setUserName(ds.child(userId).getValue(UserProfile.class).getUserName());
-                uInfo.setUserEmail(ds.child(userId).getValue(UserProfile.class).getUserEmail());
-                uInfo.setUserPhone(ds.child(userId).getValue(UserProfile.class).getUserPhone());
-                uInfo.setUserSureName(ds.child(userId).getValue(UserProfile.class).getUserSureName());
-
-                profileName.setText(uInfo.getUserName() + " " + uInfo.getUserSureName());
-                profilePhone.setText(uInfo.getUserPhone());
-                profileEmail.setText(uInfo.getUserEmail());
-
-            }
-
-        }
-
-    }
-
-    @Override
-    public  void onStart(){
-       super.onStart();
-       mAuth.addAuthStateListener(mAuthListener);
-    }
-
-    @Override
-    public  void onStop() {
-        super.onStop();
-        if(mAuthListener != null){
-            mAuth.removeAuthStateListener(mAuthListener);
-        }
-    }
 }

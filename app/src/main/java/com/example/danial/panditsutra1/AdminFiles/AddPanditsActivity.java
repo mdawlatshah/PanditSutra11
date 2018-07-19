@@ -126,7 +126,7 @@ public class AddPanditsActivity extends AppCompatActivity{
                     Toast.makeText(getApplicationContext(), " Successfully Added", Toast.LENGTH_LONG).show();
                     PanditProfile panditProfile = new PanditProfile(userType, pName,pEmail,pPhone,pLocation,pPayment,panditType);
                     final String userId =mAuth.getUid();
-                    mDatabase.child("Users").child(userId).setValue(panditProfile);
+                    mDatabase.child("Pandits").child(userId).setValue(panditProfile);
 
                 }else {
 

@@ -81,7 +81,7 @@ public class AddKundliPanditActivity extends AppCompatActivity {
                    // KundliPandit kundliPandit = new KundliPandit(userType, horoType, kName, kEmail, kPhone);
                     KundliPandit kundliPandit = new KundliPandit(userType, horoType, kName, kEmail, kPhone, health, travel, professional, personal, luck);
                     final String userId =mAuth.getUid();
-                    mDatabase.child("Users").child(userId).setValue(kundliPandit);
+                    mDatabase.child("kundliPandit").child(userId).setValue(kundliPandit);
 
                 }else {
 
