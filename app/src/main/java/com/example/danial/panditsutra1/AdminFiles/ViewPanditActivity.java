@@ -19,8 +19,6 @@ import java.util.ArrayList;
 public class ViewPanditActivity extends AppCompatActivity {
 
     private FirebaseDatabase database;
-    private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener mAuthListener;
     private DatabaseReference ref;
     private String userID;
     private ListView listView;
@@ -36,7 +34,7 @@ public class ViewPanditActivity extends AppCompatActivity {
         setContentView(R.layout.activity_view_pandit);
         panditProfile = new PanditProfile();
         listView = (ListView)findViewById(R.id.listView);
-        mAuth = FirebaseAuth.getInstance();
+
         database = FirebaseDatabase.getInstance();
         ref = database.getReference();
 
