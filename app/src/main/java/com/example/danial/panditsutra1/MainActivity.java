@@ -23,6 +23,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.danial.panditsutra1.AdminFiles.AdminActivity;
+import com.example.danial.panditsutra1.AdminFiles.KundliPanditProfileActivity;
+import com.example.danial.panditsutra1.AdminFiles.PanditProfileActivity;
 import com.example.danial.panditsutra1.ProfileClasses.UserProfile;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -41,8 +43,11 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -59,7 +64,9 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     String takeName;
     String takeLastName;
     String takePhone = " ";
-
+    FirebaseDatabase pdata;
+    DatabaseReference pRef;
+    private FirebaseAuth pAuth;
 //h
     LocationManager locationManager;
     private Button userRegistrationBtn;
@@ -248,8 +255,24 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             passwrodTxt.requestFocus();
             return;
         }
+        pRef = pdata.getInstance().getReference().child("Pandits");
+        pAuth = FirebaseAuth.getInstance();
 
+        pRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String passc = dataSnapshot.child(pAuth.getUid()).child("userType").getValue().toString();
+                if(passc.equals("Pandit")){
+                    Toast.makeText(getApplicationContext(), "Yess", Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(MainActivity.this, PanditProfileActivity.class));
+                }
+            }
 
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+
+        }) ;
 
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
@@ -266,6 +289,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                 }
             }
         });
+
+
 
     }
 

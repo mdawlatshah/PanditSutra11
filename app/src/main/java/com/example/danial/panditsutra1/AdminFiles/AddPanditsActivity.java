@@ -86,7 +86,7 @@ public class AddPanditsActivity extends AppCompatActivity{
                         @Override
                         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                             pType = parent.getItemAtPosition(position).toString();
-
+                            Toast.makeText(getApplicationContext(), pType, Toast.LENGTH_LONG).show();
                             panditType = pType;
 
 

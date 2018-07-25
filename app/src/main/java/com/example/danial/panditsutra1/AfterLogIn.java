@@ -91,6 +91,9 @@ public class AfterLogIn extends AppCompatActivity implements SponsorsImageAdapte
     LocationManager locationManager;
 
 
+
+
+
     //tabs fragment ...
     TabLayout tabLayout;
     ViewPager viewPagerMain;
@@ -254,44 +257,32 @@ public class AfterLogIn extends AppCompatActivity implements SponsorsImageAdapte
          myRef = firebaseDatabase.getInstance().getReference().child("Users");
         final PanditProfile userProfile = new PanditProfile();
         final KundliPandit kundllProfile = new KundliPandit();
-        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                String passc = dataSnapshot.child(mAuth.getUid()).child("userType").getValue().toString();
-                if(passc.equals("Pandit")){
-                    Toast.makeText(getApplicationContext(), "Yess", Toast.LENGTH_LONG).show();
-                    startActivity(new Intent(AfterLogIn.this, PanditProfileActivity.class));
-                } else if(passc.equals("Kundli_Pandit"))
-                {
-                    Toast.makeText(getApplicationContext(), "Kundli Pandit", Toast.LENGTH_LONG).show();
-                    startActivity(new Intent(AfterLogIn.this, KundliPanditProfileActivity.class));
-                }else if(passc.equals("Admin")){
-                    startActivity(new Intent(AfterLogIn.this, AdminActivity.class));
-                    finish();
-                }
-
-                else{
-                 Toast.makeText(getApplicationContext(),"Users checked", Toast.LENGTH_LONG).show();
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-            }
-
-        }) ;
-//h
-        //////////////////////////////////////////////////////////////////////////
-//        if(myRef.child("Users").child(firebaseAuth.getUid()).child("userPhone").equals(" "))
-//        {
-//            String numm = editText.getText().toString();
-//            myRef.child("Users").child(firebaseAuth.getUid()).child("userPhone").setValue(numm);
-//            Toast.makeText(getApplicationContext(), "Please insert your phone Number", Toast.LENGTH_LONG).show();
-//        }else {
-//            editText.setText(" No Number");
-//        }
-//////////////////////////////////////////////////////////////////////////////////
-
+//        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                String passc = dataSnapshot.child(mAuth.getUid()).child("userType").getValue().toString();
+//                if(passc.equals("Pandit")){
+//                    Toast.makeText(getApplicationContext(), "Yess", Toast.LENGTH_LONG).show();
+//                    startActivity(new Intent(AfterLogIn.this, PanditProfileActivity.class));
+//                } else if(passc.equals("Kundli_Pandit"))
+//                {
+//                    Toast.makeText(getApplicationContext(), "Kundli Pandit", Toast.LENGTH_LONG).show();
+//                    startActivity(new Intent(AfterLogIn.this, KundliPanditProfileActivity.class));
+//                }else if(passc.equals("Admin")){
+//                    startActivity(new Intent(AfterLogIn.this, AdminActivity.class));
+//                    finish();
+//                }
+//
+//                else{
+//                 Toast.makeText(getApplicationContext(),"Users checked", Toast.LENGTH_LONG).show();
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//            }
+//
+//        }) ;
 
 
 

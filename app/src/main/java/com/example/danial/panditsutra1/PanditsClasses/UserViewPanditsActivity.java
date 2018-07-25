@@ -56,7 +56,7 @@ public class UserViewPanditsActivity extends AppCompatActivity  {
     ArrayList<TextView> tvList;
     ArrayList<String> panditEmail;
     ArrayAdapter<String> adapter;
-    public static int rateCounter;
+     int rateCounter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,7 +100,7 @@ public class UserViewPanditsActivity extends AppCompatActivity  {
                              rateCounter = panditProfile.getRateCounter();
 
 
-                            arrayList.add(pName+ " , " + pEmail+" , "+ pPhone + " , "+ pType +" , "+pRating);
+                            arrayList.add(pName+ " , " + pEmail+" , "+ pPhone + " , "+ pType +" , "+pRating + " , " + rateCounter);
                             panditEmail.add(pEmail);
 
 //                            if (i == 1){

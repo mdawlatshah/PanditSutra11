@@ -16,6 +16,8 @@ public class PanditProfile {
     public float rating;
     public int rateCounter;
 
+
+
     public float getRating() {
         return rating;
     }

@@ -17,6 +17,7 @@ import android.widget.Toast;
 import android.text.format.DateFormat;
 
 import com.example.danial.panditsutra1.R;
+import com.example.danial.panditsutra1.RatePanditActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -35,7 +36,7 @@ public class MsgPanditActivity extends AppCompatActivity implements  DatePickerD
 
     TextView textView, tvDateNTime;
     Button sentBtn;
-    String panditEmail;
+   public static String panditEmail;
     String panditType;
 
     private FirebaseAuth mAuth;
@@ -50,10 +51,10 @@ public class MsgPanditActivity extends AppCompatActivity implements  DatePickerD
     String time;
     RatingBar ratingBar;
     Button ratePBtn;
-    String pPrevRate;
-    float newRate;
-    int rateCounter = UserViewPanditsActivity.rateCounter;
-
+   public static float pPrevRate;
+    String previousRating;
+   public static int rateCounter;
+    String rCounter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -103,25 +104,8 @@ public class MsgPanditActivity extends AppCompatActivity implements  DatePickerD
                 datePickerDialog.show();
             }
         });
-        ratePBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-               newRate = (float) ratingBar.getRating();
-                float f1 = Float.parseFloat(pPrevRate);
 
-                if(rateCounter == 0.0){
-                    newRate = (float) ratingBar.getRating();
 
-                }else{
-
-                }
-                float avg = (newRate + (float) rateCounter) / 2;
-
-                Toast.makeText(getApplicationContext(),"Rating is " + f1, Toast.LENGTH_LONG).show();
-            }
-        });
-
-//        textView.setText(bundle.getString("PanditEmail"));
         String pnEmail  = bundle.getString("PanditEmail");
         List<String> myList = new ArrayList<String>(Arrays.asList(pnEmail.split(",")));
 
@@ -130,35 +114,12 @@ public class MsgPanditActivity extends AppCompatActivity implements  DatePickerD
 
         panditEmail = myList.get(1).toString();
         panditType = myList.get(3).toString();
-        pPrevRate = myList.get(4).toString();
+        previousRating = myList.get(4).toString().trim();
+        rCounter = myList.get(5).toString().trim();
 
-        myRef.child("Pandits").addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+        rateCounter = Integer.parseInt(rCounter);
+        pPrevRate = Float.parseFloat(previousRating);
 
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                    for(DataSnapshot ds : dataSnapshot.getChildren()){
-                    }
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
 
 
 
@@ -166,24 +127,15 @@ public class MsgPanditActivity extends AppCompatActivity implements  DatePickerD
             @Override
             public void onClick(View v) {
 
-                String dNt = tvDateNTime.getText().toString().trim();
-                if(dNt.isEmpty()){
-
-                    tvDateNTime.setError("Email is required");
-                    tvDateNTime.requestFocus();
-
-                    return;
-                } else {
-
                     sentMsg();
-                }
-
             }
         });
-
-
-
-
+        ratePBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MsgPanditActivity.this, RatePanditActivity.class));
+            }
+        });
 
     }
     private void sentMsg(){
