@@ -13,11 +13,39 @@
         layout="@layout/search_tool_bar"></include>
 
 
-        <android.support.v4.view.ViewPager
-            android:id="@+id/viewPagerSponsors"
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp">
+
+        <ProgressBar
+            android:id="@+id/progress_circle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/recycler_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/recycler_view"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view"
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:background="@color/white"/>
+            android:orientation="horizontal">
+
+        </android.support.v7.widget.RecyclerView>
+
+    </android.support.constraint.ConstraintLayout>
+
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPagerSponsors"
+        android:layout_width="0dp"
+        android:layout_height="0dp"></android.support.v4.view.ViewPager>
 
     <LinearLayout
         android:id="@+id/SliderDots"

@@ -4,6 +4,9 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -57,6 +60,8 @@
         <activity android:name=".AdminFiles.ViewPanditActivity" />
         <activity android:name=".AdminFiles.AddSponsorPhotosActivity" />
         <activity android:name=".PanditsClasses.MsgPanditActivity"></activity>
+        <activity android:name=".AdminSponsorFiles.AddSponsorPhotosActivity" />
+        <activity android:name=".AdminSponsorFiles.SponsorImagesActivity"></activity>
     </application>
 
 </manifest>

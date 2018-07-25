@@ -7,12 +7,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.danial.panditsutra1.AdminSponsorFiles.AddSponsorPhotosActivity;
 import com.example.danial.panditsutra1.R;
 
 public class AdminActivity extends AppCompatActivity implements View.OnClickListener {
     private Button addBtn;
     private Button addKundli;
     private  Button viewPandits;
+
+    //add sponsor images btn
+    private Button addSponsorImageBtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +29,8 @@ public class AdminActivity extends AppCompatActivity implements View.OnClickList
         addKundli = (Button) findViewById(R.id.addKundliPandit);
         viewPandits = (Button) findViewById(R.id.viewPandit);
 
+        addSponsorImageBtn = (Button) findViewById(R.id.addSponsorImageBtn);
+
         findViewById(R.id.addPandits).setOnClickListener(this);
 
 
@@ -31,6 +38,9 @@ public class AdminActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View v) {
+        if(v.getId() == R.id.addSponsorImageBtn) {
+            startActivity(new Intent(AdminActivity.this, AddSponsorPhotosActivity.class));
+        }
         if(v.getId() == R.id.addPandits){
             Intent intent = new Intent(AdminActivity.this, AddPanditsActivity.class);
             startActivity(intent);
@@ -42,5 +52,6 @@ public class AdminActivity extends AppCompatActivity implements View.OnClickList
         {
             startActivity(new Intent(AdminActivity.this, ViewPanditActivity.class));
         }
+
     }
 }

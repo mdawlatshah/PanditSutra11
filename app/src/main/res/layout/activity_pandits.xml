@@ -1,34 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainPageFiles.PanditsFragment">
+    tools:context=".PanditsClasses.PanditsActivity">
 
     <TableLayout
         android:id="@+id/panditsTable"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:gravity="center">
 
         <TableRow
-            android:id="@+id/panditsList1"
+            android:id="@+id/premiumPandits"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center">
 
 
             <LinearLayout
-                android:id="@+id/panditVastul"
+                android:id="@+id/premiumPandit1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
@@ -36,7 +28,7 @@
                 android:padding="5dp">
 
                 <ImageView
-                    android:id="@+id/vastulImage"
+                    android:id="@+id/PremiumPanditImage1"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_weight="1"
@@ -45,19 +37,19 @@
                     tools:ignore="OnClick" />
 
                 <TextView
-                    android:id="@+id/vastul"
+                    android:id="@+id/premiumPanditName1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="@font/aclonica"
-                    android:text="Vastul"
+                    android:text="Premium 1"
                     android:textAllCaps="true"
                     android:textSize="18sp" />
 
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/panditAstrologal"
+                android:id="@+id/premiumPandit2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
@@ -65,26 +57,28 @@
                 android:padding="5dp">
 
                 <ImageView
-                    android:id="@+id/astrologalImage"
+                    android:id="@+id/PremiumPanditImage2"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_weight="1"
-                    android:src="@drawable/profile_icon" />
+                    android:onClick="onClick"
+                    android:src="@drawable/profile_icon"
+                    tools:ignore="OnClick" />
 
                 <TextView
-                    android:id="@+id/astrologal"
+                    android:id="@+id/premiumPanditName2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="@font/aclonica"
-                    android:text="Astrologal"
+                    android:text="Premium 2"
                     android:textAllCaps="true"
                     android:textSize="18sp" />
 
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/panditSastri"
+                android:id="@+id/premiumPandit3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
@@ -92,19 +86,21 @@
                 android:padding="5dp">
 
                 <ImageView
-                    android:id="@+id/sastriImage"
+                    android:id="@+id/PremiumPanditImage3"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_weight="1"
-                    android:src="@drawable/profile_icon" />
+                    android:onClick="onClick"
+                    android:src="@drawable/profile_icon"
+                    tools:ignore="OnClick" />
 
                 <TextView
-                    android:id="@+id/sastri"
+                    android:id="@+id/premiumPanditName3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="@font/aclonica"
-                    android:text="Sastri"
+                    android:text="Premium 3"
                     android:textAllCaps="true"
                     android:textSize="18sp" />
 
@@ -113,91 +109,117 @@
         </TableRow>
 
         <TableRow
-            android:id="@+id/panditsList2"
+            android:id="@+id/paidPandits"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="20dp"
             android:gravity="center">
 
 
             <LinearLayout
-                android:id="@+id/panditByias"
+                android:id="@+id/paidPandit1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:padding="5dp">
+                android:padding="1dp">
 
                 <ImageView
-                    android:id="@+id/byiasImage"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:id="@+id/paidPanditImage1"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
                     android:layout_weight="1"
                     android:src="@drawable/profile_icon" />
 
                 <TextView
-                    android:id="@+id/byias"
+                    android:id="@+id/paidPanditName1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="@font/aclonica"
-                    android:text="Byias"
+                    android:text="Paid 1"
                     android:textAllCaps="true"
-                    android:textSize="18sp" />
+                    android:textSize="16sp" />
 
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/panditMohant"
+                android:id="@+id/paidPandit2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:padding="5dp">
+                android:padding="1dp">
 
                 <ImageView
-                    android:id="@+id/mohantImage"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:id="@+id/paidPanditImage2"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
                     android:layout_weight="1"
                     android:src="@drawable/profile_icon" />
 
                 <TextView
-                    android:id="@+id/mohant"
+                    android:id="@+id/paidPanditName2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="@font/aclonica"
-                    android:text="Mohant"
+                    android:text="Paid 2"
                     android:textAllCaps="true"
-                    android:textSize="18sp" />
+                    android:textSize="16sp" />
 
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/panditJyotish"
+                android:id="@+id/paidPandit3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:padding="5dp">
+                android:padding="1dp">
 
                 <ImageView
-                    android:id="@+id/jyotishImage"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:id="@+id/paidPanditImage3"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
                     android:layout_weight="1"
                     android:src="@drawable/profile_icon" />
 
                 <TextView
-                    android:id="@+id/jyotish"
+                    android:id="@+id/paidPanditName3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="@font/aclonica"
-                    android:text="Jyotish"
+                    android:text="Paid 3"
                     android:textAllCaps="true"
-                    android:textSize="18sp" />
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/paidPandit4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="1dp">
+
+                <ImageView
+                    android:id="@+id/paidPanditImage4"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/profile_icon" />
+
+                <TextView
+                    android:id="@+id/paidPanditName4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/aclonica"
+                    android:text="Paid 4"
+                    android:textAllCaps="true"
+                    android:textSize="16sp" />
 
             </LinearLayout>
 
@@ -206,5 +228,4 @@
     </TableLayout>
 
 
-
-</android.support.constraint.ConstraintLayout>
+</ScrollView>

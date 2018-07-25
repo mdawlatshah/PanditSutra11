@@ -23,8 +23,12 @@
           }
         },
         {
-          "client_id": "128208972553-68ofvs3pm4r4j6fe7ev7afq8mkc53mm1.apps.googleusercontent.com",
-          "client_type": 3
+          "client_id": "128208972553-93kt3h99rkbq7iktop1ov7jrumn1jl4l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.danial.panditsutra1",
+            "certificate_hash": "4fb98777484d7b2ec6a8e41517e6d9489ca180ea"
+          }
         },
         {
           "client_id": "128208972553-68ofvs3pm4r4j6fe7ev7afq8mkc53mm1.apps.googleusercontent.com",
