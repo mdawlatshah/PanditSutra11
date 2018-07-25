@@ -1,7 +1,16 @@
 package com.example.danial.panditsutra1;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -41,8 +50,10 @@ import org.json.JSONObject;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Locale;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements LocationListener {
 
     String takeEmail;
     String takeName;
@@ -50,7 +61,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     String takePhone = " ";
 
 //h
-    private Button guestBtn;
+    LocationManager locationManager;
+    private Button userRegistrationBtn;
     private TextView emailTxt;
     private TextView passwrodTxt;
     private Button loginBtn;
@@ -58,6 +70,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     LoginButton fbLogin;
     TextView forgotPassword;
     CallbackManager callbackManager;
+    public static String userLocation = " ";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,7 +84,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         setContentView(R.layout.activity_main);
 
-        guestBtn = (Button) findViewById(R.id.registrationActivityBtn);
+        userRegistrationBtn = (Button) findViewById(R.id.registrationActivityBtn);
         passwrodTxt = (TextView) findViewById(R.id.password);
         emailTxt = (TextView) findViewById(R.id.emailEditText);
         loginBtn = (Button) findViewById(R.id.singinButton);
@@ -81,19 +94,39 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         callbackManager = CallbackManager.Factory.create();
         forgotPassword = (TextView) findViewById(R.id.tvForgotPassword);
         fbLogin.setReadPermissions(Arrays.asList("email"));
-//        loginBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//              //  validate(emailTxt.getText().toString(),passwrod.getText().toString() );
-//            }
-//        });
+
         forgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                    finish();
+
                 startActivity(new Intent(MainActivity.this, PasswordActivity.class));
             }
         });
+        userRegistrationBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, RegistrationActivity.class));
+
+            }
+        });
+        loginBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                userLogin();
+            }
+        });
+        // Locator
+        if (ContextCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+            ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.ACCESS_COARSE_LOCATION}, 101);
+
+        }
+
+        //gets address automatically
+        getLocation();
+
+
+
     }
     public void buttonClickFb(View v){
         LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
@@ -144,25 +177,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
-//    public void buttonClickFb(View v){
-//        LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-//            @Override
-//            public void onSuccess(LoginResult loginResult) {
-//
-//                handleFacebookToken(loginResult.getAccessToken());
-//            }
-//
-//            @Override
-//            public void onCancel() {
-//                Toast.makeText(MainActivity.this, "Cancelled", Toast.LENGTH_SHORT).show();
-//            }
-//
-//            @Override
-//            public void onError(FacebookException error) {
-//                Toast.makeText(getApplicationContext(),error.getMessage(), Toast.LENGTH_LONG).show();
-//            }
-//        });
-//    }
     private void handleFacebookToken(AccessToken accessToken) {
         AuthCredential credential = FacebookAuthProvider.getCredential(accessToken.getToken());
         mAuth.signInWithCredential(credential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -244,12 +258,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 if (task.isSuccessful()) {
 
-//                    finish();
                     checkEmailVerification();
 
-//                    Intent intent = new Intent(MainActivity.this, AfterLogIn.class);
-//                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                    startActivity(intent);
+
                 } else {
                     Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                 }
@@ -257,48 +268,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
 
     }
-    @Override
-    public void  onClick(View v){
 
-
-        if(v.getId() == R.id.registrationActivityBtn){
-//            finish();
-            startActivity(new Intent(this, RegistrationActivity.class));
-
-        }
-        else if(v.getId() == R.id.singinButton)
-        {
-            //Toast.makeText(getApplicationContext(), "Hello", Toast.LENGTH_SHORT).show();
-
-            userLogin();
-        }
-       /* switch ((v.getId()))
-        {
-            case R.id.guestBtn:
-                startActivity(new Intent(this, RegistrationActivity.class));
-                break;
-
-            case R.id.singinButton:
-                Toast.makeText(getApplicationContext(), "Hello", Toast.LENGTH_SHORT).show();
-                userLogin();
-                break;
-        }*/
-//        protected  void onStart()
-//        {
-//            super.onStart();
-////        if(mAuth.getCurrentUser() != null){
-////            finish();;
-////            startActivity(new Intent(this, ProfileActivity.class));
-////        }
-//
-//        }
-//        if(v.getId() == R.id.guestBtn)
-//        {
-//            Toast.makeText(getApplicationContext(), "Hello", Toast.LENGTH_SHORT).show();
-//            startActivity(new Intent(MainActivity.this, RegistrationActivity.class));
-//
-//        }
-    }
     private  void checkEmailVerification(){
         FirebaseUser firebaseUser = mAuth.getInstance().getCurrentUser();
         Boolean emailflag = firebaseUser.isEmailVerified();
@@ -313,24 +283,54 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         }
     }
-//    public void validate (String name, String password){
-//        if((name.equals("0552")) && (password.equals("12345")))
-//        {
-//            Intent intent = new Intent(MainActivity.this, AfterLogIn.class);
-//            startActivity(intent);
-//        }else if(!(name.equals("0552")))
-//        {
-//            Context context = getApplicationContext();
-//            Toast.makeText(context, "Invalid Phone Number", Toast.LENGTH_LONG).show();
-//        }else if(!(password.equals("12345")))
-//        {
-//            Context context = getApplicationContext();
-//            Toast.makeText(context, "Invalid Password", Toast.LENGTH_LONG).show();
-//        }else
-//        {
-//            Context context = getApplicationContext();
-//            Toast.makeText(context, "Invalid Phone Number and Password", Toast.LENGTH_LONG).show();
-//        }
-//    }
+
+    // Locator methods
+
+    void getLocation() {
+        try {
+            locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 5000, 5, (LocationListener) this);
+        }
+        catch(SecurityException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+        //shows both latitude and longitude
+        //locationText.setText("Latitude: " + location.getLatitude() + "\n Longitude: " + location.getLongitude());
+
+        try {
+            Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+            List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+//            locationText.setText(locationText.getText() + "\n"+addresses.get(0).getAddressLine(0) + "\nCode " +
+//                            addresses.get(0).getPostalCode());
+
+
+            userLocation = addresses.get(0).getSubAdminArea().toString().toLowerCase();
+            Toast.makeText(getApplicationContext(), userLocation + " userProfile getLocation view", Toast.LENGTH_LONG).show();
+
+        }catch(Exception e)
+        {
+
+        }
+
+    }
+
+    @Override
+    public void onProviderDisabled(String provider) {
+        Toast.makeText(MainActivity.this, "Please Enable GPS and Internet", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+
+    }
+
+    @Override
+    public void onProviderEnabled(String provider) {
+
+    }
 
 }

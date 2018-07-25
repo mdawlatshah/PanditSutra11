@@ -13,7 +13,24 @@ public class PanditProfile {
     public String location;
     public String paymentType;
     public String type;
-    
+    public float rating;
+    public int rateCounter;
+
+    public float getRating() {
+        return rating;
+    }
+
+    public void setRating(float rating) {
+        this.rating = rating;
+    }
+
+    public int getRateCounter() {
+        return rateCounter;
+    }
+
+    public void setRateCounter(int rateCounter) {
+        this.rateCounter = rateCounter;
+    }
 
     public PanditProfile(){
 
@@ -73,7 +90,8 @@ public class PanditProfile {
         this.type = type;
     }
 
-    public PanditProfile(String userType, String name, String email, String phone, String location, String paymentType, String type) {
+    public PanditProfile(String userType, String name, String email, String phone, String location, String paymentType, String type, float rating, int rateCounter) {
+
 
         this.userType = userType;
         this.name = name;
@@ -82,5 +100,7 @@ public class PanditProfile {
         this.location = location;
         this.paymentType = paymentType;
         this.type = type;
+        this.rating = rating;
+        this.rateCounter = rateCounter;
     }
 }

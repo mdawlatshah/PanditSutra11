@@ -28,12 +28,13 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.List;
 import java.util.Locale;
 
-public class ProfileActivity extends AppCompatActivity implements LocationListener {
+public class ProfileActivity extends AppCompatActivity  {
 
     private DatabaseReference myRef;
     private TextView profileName;
     private  TextView profileEmail;
     private TextView profilePhone;
+
 
     private FirebaseAuth mAuth;
      private FirebaseDatabase mFirebaseDatabase;
@@ -69,20 +70,6 @@ public class ProfileActivity extends AppCompatActivity implements LocationListen
             public void onDataChange(DataSnapshot dataSnapshot) {
 
 
-//            String s = ds.child(userId).child("userType").getValue().toString();
-//            if(s.equals("User")){
-//
-//                UserProfile uInfo = new UserProfile();
-//                uInfo.setUserName(ds.child(userId).getValue(UserProfile.class).getUserName());
-//                uInfo.setUserEmail(ds.child(userId).getValue(UserProfile.class).getUserEmail());
-//                uInfo.setUserPhone(ds.child(userId).getValue(UserProfile.class).getUserPhone());
-//                uInfo.setUserSureName(ds.child(userId).getValue(UserProfile.class).getUserSureName());
-//
-//                profileName.setText(uInfo.getUserName() + " " + uInfo.getUserSureName());
-//                profilePhone.setText(uInfo.getUserPhone());
-//                profileEmail.setText(uInfo.getUserEmail());
-//                  userSureName
-//            }
                 profileName.setText(dataSnapshot.child(userId).child("userName").getValue().toString()  + " " + dataSnapshot.child(userId).child("userSureName").getValue().toString()  );
                 profileEmail.setText(dataSnapshot.child(userId).child("userEmail").getValue().toString() );
                 String phone = dataSnapshot.child(userId).child("userPhone").getValue().toString();
@@ -93,14 +80,6 @@ public class ProfileActivity extends AppCompatActivity implements LocationListen
 
                 uInfo.setUserPhone(dataSnapshot.child(userId).child("userPhone").getValue().toString());
                 Toast.makeText(getApplicationContext(), uInfo.getUserPhone(),Toast.LENGTH_LONG).show();
-
-//                        profilePhone.setText(uInfo.getUserPhone().toString());
-//                        profileEmail.setText(uInfo.getUserEmail().toString());
-
-
-
-
-
                 }
 
             @Override
@@ -117,16 +96,16 @@ public class ProfileActivity extends AppCompatActivity implements LocationListen
         //locationText = (TextView)findViewById(R.id.locationText);
         locationText = (TextView)findViewById(R.id.locationText);
 
+        locationText.setText(MainActivity.userLocation);
 
-
-        if (ContextCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-
-            ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.ACCESS_COARSE_LOCATION}, 101);
-
-        }
-
-        //gets address automatically
-        getLocation();
+//        if (ContextCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+//
+//            ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.ACCESS_COARSE_LOCATION}, 101);
+//
+//        }
+//
+//        //gets address automatically
+//        getLocation();
 
         //gets address by clicking on button
 //        getLocationBtn.setOnClickListener(new View.OnClickListener() {
@@ -144,57 +123,59 @@ public class ProfileActivity extends AppCompatActivity implements LocationListen
 
     //google location
 
-    void getLocation() {
-        try {
-            locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 5000, 5, this);
-        }
-        catch(SecurityException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    public void onLocationChanged(Location location) {
-        //shows both latitude and longitude
-        //locationText.setText("Latitude: " + location.getLatitude() + "\n Longitude: " + location.getLongitude());
-
-        try {
-            Geocoder geocoder = new Geocoder(this, Locale.getDefault());
-            List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
-//            locationText.setText(locationText.getText() + "\n"+addresses.get(0).getAddressLine(0) + "\nCode " +
-//                            addresses.get(0).getPostalCode());
-
-            locationText.setText(
-                    addresses.get(0).getSubThoroughfare()
-                            +", " + addresses.get(0).getThoroughfare()
-                            +"\n" + addresses.get(0).getSubLocality()
-                            +", " + addresses.get(0).getSubAdminArea()
-                            +"\n" + addresses.get(0).getAdminArea()
-                            +", " + addresses.get(0).getPostalCode()
-                            +"\n" + addresses.get(0).getCountryName());
-
-        }catch(Exception e)
-        {
-
-        }
-
-    }
-
-    @Override
-    public void onProviderDisabled(String provider) {
-        Toast.makeText(ProfileActivity.this, "Please Enable GPS and Internet", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onStatusChanged(String provider, int status, Bundle extras) {
-
-    }
-
-    @Override
-    public void onProviderEnabled(String provider) {
-
-    }
+//    void getLocation() {
+//        try {
+//            locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+//            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 5000, 5, this);
+//        }
+//        catch(SecurityException e) {
+//            e.printStackTrace();
+//        }
+//    }
+//
+//    @Override
+//    public void onLocationChanged(Location location) {
+//        //shows both latitude and longitude
+//        //locationText.setText("Latitude: " + location.getLatitude() + "\n Longitude: " + location.getLongitude());
+//
+//        try {
+//            Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+//            List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+////            locationText.setText(locationText.getText() + "\n"+addresses.get(0).getAddressLine(0) + "\nCode " +
+////                            addresses.get(0).getPostalCode());
+//
+//            locationText.setText(
+//                    addresses.get(0).getSubThoroughfare()
+//                            +", " + addresses.get(0).getThoroughfare()
+//                            +"\n" + addresses.get(0).getSubLocality()
+//                            +", " + addresses.get(0).getSubAdminArea()
+//                            +"\n" + addresses.get(0).getAdminArea()
+//                            +", " + addresses.get(0).getPostalCode()
+//                            +"\n" + addresses.get(0).getCountryName());
+//
+//
+//
+//        }catch(Exception e)
+//        {
+//
+//        }
+//
+//    }
+//
+//    @Override
+//    public void onProviderDisabled(String provider) {
+//        Toast.makeText(ProfileActivity.this, "Please Enable GPS and Internet", Toast.LENGTH_SHORT).show();
+//    }
+//
+//    @Override
+//    public void onStatusChanged(String provider, int status, Bundle extras) {
+//
+//    }
+//
+//    @Override
+//    public void onProviderEnabled(String provider) {
+//
+//    }
 
 
     ////////////////////////////////////////////////////////////////////

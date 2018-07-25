@@ -1,10 +1,18 @@
 package com.example.danial.panditsutra1;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.TabItem;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -37,6 +45,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.List;
+import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -54,6 +64,9 @@ public class AfterLogIn extends AppCompatActivity {
     DatabaseReference myRef;
     private FacebookAuthProvider facebookAuthProvider;
     private FirebaseAuth mAuth;
+
+    LocationManager locationManager;
+
 
     //tabs fragment ...
     TabLayout tabLayout;
@@ -209,13 +222,10 @@ public class AfterLogIn extends AppCompatActivity {
         });
 
         Timer timer = new Timer();
-        timer.scheduleAtFixedRate(new MyTimerTask(), 3000, 5000);
+        timer.scheduleAtFixedRate(new MyTimerTask(), 500,1000);
 
-
-//
         mAuth = FirebaseAuth.getInstance();
-//        ed2 = (EditText) findViewById(R.id.textView2);
-//        editText = (EditText) findViewById(R.id.phoneToSend);
+
 
 
         firebaseAuth = FirebaseAuth.getInstance();
@@ -242,8 +252,6 @@ public class AfterLogIn extends AppCompatActivity {
                 else{
                  Toast.makeText(getApplicationContext(),"Users checked", Toast.LENGTH_LONG).show();
                 }
-
-
             }
 
             @Override
@@ -252,19 +260,6 @@ public class AfterLogIn extends AppCompatActivity {
             }
 
         }) ;
-//h
-        //////////////////////////////////////////////////////////////////////////
-//        if(myRef.child("Users").child(firebaseAuth.getUid()).child("userPhone").equals(" "))
-//        {
-//            String numm = editText.getText().toString();
-//            myRef.child("Users").child(firebaseAuth.getUid()).child("userPhone").setValue(numm);
-//            Toast.makeText(getApplicationContext(), "Please insert your phone Number", Toast.LENGTH_LONG).show();
-//        }else {
-//            editText.setText(" No Number");
-//        }
-//////////////////////////////////////////////////////////////////////////////////
-
-
 
 
 
@@ -292,8 +287,6 @@ public class AfterLogIn extends AppCompatActivity {
         }
     }
 
-
-//
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -319,6 +312,5 @@ public class AfterLogIn extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
 
     }
-
 
 }

@@ -37,6 +37,9 @@ public class AddPanditsActivity extends AppCompatActivity{
    public String pName, pEmail, pPhone, pPassword, pLocation, pType, pPaymentType, pPayment;
     String userType = "Pandit";
     String panditType = " ";
+    float rate = (float) 0.0;
+    int counter = 0;
+
 
 
 
@@ -124,7 +127,7 @@ public class AddPanditsActivity extends AppCompatActivity{
                    sendEmailVerification();
 
                     Toast.makeText(getApplicationContext(), " Successfully Added", Toast.LENGTH_LONG).show();
-                    PanditProfile panditProfile = new PanditProfile(userType, pName,pEmail,pPhone,pLocation,pPayment,panditType);
+                    PanditProfile panditProfile = new PanditProfile(userType, pName,pEmail,pPhone,pLocation,pPayment,panditType, rate, counter);
                     final String userId =mAuth.getUid();
                     mDatabase.child("Pandits").child(userId).setValue(panditProfile);
 
