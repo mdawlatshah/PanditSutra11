@@ -4,55 +4,100 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/mainBackground"
     tools:context=".AdminSponsorFiles.AddSponsorPhotosActivity">
 
-    <Button
-        android:id="@+id/button_choose_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="28dp"
-        android:text="Choose"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/edit_text_file_name"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/button_choose_image"
-        android:layout_alignParentEnd="true"
-        android:layout_column="0"
-        android:layout_marginEnd="32dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="28dp"
-        android:layout_row="1"
-        android:inputType="text"
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button_choose_image"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/button_choose_image"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="12dp"
+            android:background="@drawable/button_background"
+            android:backgroundTint="@color/btn_background"
+            android:elevation="15dp"
+            android:text="Choose"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/edit_text_file_name"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_column="0"
+
+            android:layout_row="1"
+            android:background="@drawable/button_background"
+            android:ems="10"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:fontFamily="sans-serif-light"
+            android:hint="Sponsor's Name"
+            android:inputType="text"
+            android:padding="10dp"
+            android:textColor="@color/input_signup" />
+
+    </LinearLayout>
+
+
+    <ImageView
+        android:id="@+id/image_view"
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:layout_marginTop="20dp"
+        android:adjustViewBounds="false"
+        android:scaleType="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        app:srcCompat="@drawable/image_icon" />
 
     <ProgressBar
         android:id="@+id/mprogress_bar"
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="20dp"
+        android:layout_width="260dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/image_view" />
 
     <Button
         android:id="@+id/button_upload"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="160dp"
+        android:layout_height="40dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
+        android:layout_below="@+id/repeatPassword"
+        android:layout_centerHorizontal="true"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="52dp"
+
+        android:background="@drawable/button_background"
+        android:backgroundTint="@color/btn_background"
+        android:elevation="15dp"
         android:text="UPLOAD"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mprogress_bar" />
 
@@ -66,28 +111,20 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:background="@null"
+        android:fontFamily="sans-serif"
         android:gravity="center"
         android:text="Show Uploads"
+        android:textAlignment="center"
         android:textAllCaps="true"
-        android:textSize="18sp"
-        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:textStyle="bold|italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_upload"
-        app:layout_constraintVertical_bias="0.035" />
-
-    <ImageView
-        android:id="@+id/image_view"
-        android:layout_width="wrap_content"
-        android:layout_height="342dp"
-        android:layout_marginTop="8dp"
-        android:adjustViewBounds="false"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:scaleType="center"
-        app:layout_constraintTop_toBottomOf="@+id/edit_text_file_name"
-        app:srcCompat="@drawable/image_icon"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintVertical_bias="0.025" />
 
 </android.support.constraint.ConstraintLayout>

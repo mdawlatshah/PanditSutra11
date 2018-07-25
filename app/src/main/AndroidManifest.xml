@@ -58,10 +58,10 @@
         <activity android:name=".PanditsClasses.UserViewPanditsActivity" />
         <activity android:name=".RashifalFiles.RashifalActivity" />
         <activity android:name=".AdminFiles.ViewPanditActivity" />
-        <activity android:name=".AdminFiles.AddSponsorPhotosActivity" />
         <activity android:name=".PanditsClasses.MsgPanditActivity" />
         <activity android:name=".AdminSponsorFiles.AddSponsorPhotosActivity" />
         <activity android:name=".AdminSponsorFiles.SponsorImagesActivity" />
+        <activity android:name=".AdminSponsorFiles.ShowSponsorImages"></activity>
         <activity android:name=".RatePanditActivity"></activity>
     </application>
 

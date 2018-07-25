@@ -9,9 +9,11 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.danial.panditsutra1.BarColors;
 import com.example.danial.panditsutra1.MainActivity;
 import com.example.danial.panditsutra1.ProfileClasses.PanditProfile;
 import com.example.danial.panditsutra1.R;
@@ -43,10 +45,14 @@ public class AddPanditsActivity extends AppCompatActivity{
 
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_add_pandits);
+
+        BarColors.colorBars(this, R.color.status_bar);
+
         etName = (EditText) findViewById(R.id.pdName);
         etEmail = (EditText) findViewById(R.id.pdEmail);
         etPhone = (EditText) findViewById(R.id.pdPhone);
@@ -118,6 +124,7 @@ public class AddPanditsActivity extends AppCompatActivity{
         pPhone = etPhone.getText().toString().trim();
         pPassword = etPassword.getText().toString();
         pLocation = etLocation.getText().toString();
+
 
         mAuth.createUserWithEmailAndPassword(pEmail,pPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override

@@ -73,7 +73,7 @@ public class AfterLogIn extends AppCompatActivity implements SponsorsImageAdapte
     private List<SponsorImageUploads> mUploads;
 
     //Sponsors Image Glide Auto
-    final int duration = 12;
+    final int duration = 14;
     final int pixelsToMove = 30;
     private final Handler mHandler = new Handler(Looper.getMainLooper());
     ///

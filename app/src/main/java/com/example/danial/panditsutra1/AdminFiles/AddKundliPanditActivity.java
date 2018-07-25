@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.danial.panditsutra1.BarColors;
 import com.example.danial.panditsutra1.MainActivity;
 import com.example.danial.panditsutra1.ProfileClasses.KundliPandit;
 import com.example.danial.panditsutra1.ProfileClasses.PanditProfile;
@@ -48,6 +49,9 @@ public class AddKundliPanditActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_kundli_pandit);
+
+        BarColors.colorBars(this, R.color.status_bar);
+
         etName = (EditText) findViewById(R.id.kpName);
         etEmail = (EditText) findViewById(R.id.kpEmail);
         etPhone = (EditText) findViewById(R.id.kpPhone);

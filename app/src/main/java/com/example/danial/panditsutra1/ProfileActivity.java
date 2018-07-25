@@ -79,7 +79,7 @@ public class ProfileActivity extends AppCompatActivity  {
                 }
 
                 uInfo.setUserPhone(dataSnapshot.child(userId).child("userPhone").getValue().toString());
-                Toast.makeText(getApplicationContext(), uInfo.getUserPhone(),Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), uInfo.getUserPhone(),Toast.LENGTH_LONG).show();
                 }
 
             @Override

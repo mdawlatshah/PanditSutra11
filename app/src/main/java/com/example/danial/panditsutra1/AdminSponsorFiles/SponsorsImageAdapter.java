@@ -57,7 +57,7 @@ public class SponsorsImageAdapter extends RecyclerView.Adapter<SponsorsImageAdap
     public class ImageViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener,
             View.OnCreateContextMenuListener, MenuItem.OnMenuItemClickListener{
 
-        public TextView textViewName;
+        //public TextView textViewName;
         public ImageView imageView;
 
         public ImageViewHolder(View itemView) {

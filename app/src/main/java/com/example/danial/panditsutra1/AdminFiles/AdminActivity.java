@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.danial.panditsutra1.AdminSponsorFiles.AddSponsorPhotosActivity;
+import com.example.danial.panditsutra1.BarColors;
 import com.example.danial.panditsutra1.R;
 
 public class AdminActivity extends AppCompatActivity implements View.OnClickListener {
@@ -22,6 +23,8 @@ public class AdminActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
+
+        BarColors.colorBars(this, R.color.status_bar);
 
         Toast.makeText(getApplicationContext(), "Hello to Admin View", Toast.LENGTH_LONG).show();
 

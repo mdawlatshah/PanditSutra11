@@ -2,6 +2,7 @@ package com.example.danial.panditsutra1.AdminSponsorFiles;
 
 import android.content.ContentResolver;
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -16,6 +17,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.danial.panditsutra1.BarColors;
 import com.example.danial.panditsutra1.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -58,12 +60,19 @@ public class AddSponsorPhotosActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_sponsor_photos);
 
+        BarColors.colorBars(this, R.color.status_bar);
+
         mButtonChooseImage = findViewById(R.id.button_choose_image);
         mButtonUpload = findViewById(R.id.button_upload);
         mTextViewShowUploads = findViewById(R.id.text_view_show_uploads);
         mEditTestFileName = findViewById(R.id.edit_text_file_name);
         mImageView = findViewById(R.id.image_view);
         mProgressBar = findViewById(R.id.mprogress_bar);
+
+        ProgressBar progressbar = (ProgressBar) findViewById(R.id.mprogress_bar);
+        int color = getResources().getColor(R.color.subtitle);
+        progressbar.getIndeterminateDrawable().setColorFilter(color, PorterDuff.Mode.SRC_IN);
+        progressbar.getProgressDrawable().setColorFilter(color, PorterDuff.Mode.SRC_IN);
 
         //firebase storage
         mStorageRef = FirebaseStorage.getInstance().getReference("SponsorImgUploads");
@@ -115,7 +124,11 @@ public class AddSponsorPhotosActivity extends AppCompatActivity {
                 && data != null && data.getData() != null) {
             mImageUri = data.getData();
 
-            Picasso.with(this).load(mImageUri).into(mImageView);
+            Picasso.with(this)
+                    .load(mImageUri)
+                    .fit()
+                    .centerInside()
+                    .into(mImageView);
             //in case picasso wasnt used
             //mImageView.setImageURI(mImageUri);
         }
@@ -180,7 +193,7 @@ public class AddSponsorPhotosActivity extends AppCompatActivity {
 
 
     private void openImagesActivity() {
-        Intent intent = new Intent(this, SponsorImagesActivity.class);
+        Intent intent = new Intent(this, ShowSponsorImages.class);
         startActivity(intent);
     }
 
