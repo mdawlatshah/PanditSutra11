@@ -64,6 +64,9 @@ public class AfterLogIn extends AppCompatActivity {
     DatabaseReference myRef;
     private FacebookAuthProvider facebookAuthProvider;
     private FirebaseAuth mAuth;
+    String locationText;
+    LocationManager locationManager;
+
 
     LocationManager locationManager;
 
