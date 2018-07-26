@@ -53,7 +53,7 @@
         <activity android:name=".AdminFiles.AdminActivity" />
         <activity android:name=".AdminFiles.AddPanditsActivity" />
         <activity android:name=".AdminFiles.AddKundliPanditActivity" />
-        <activity android:name=".AdminFiles.PanditProfileActivity" />
+        <activity android:name=".PanditsClasses.PanditProfileImageActivity" />
         <activity android:name=".AdminFiles.KundliPanditProfileActivity" />
         <activity android:name=".PanditsClasses.UserViewPanditsActivity" />
         <activity android:name=".RashifalFiles.RashifalActivity" />
@@ -61,8 +61,10 @@
         <activity android:name=".PanditsClasses.MsgPanditActivity" />
         <activity android:name=".AdminSponsorFiles.AddSponsorPhotosActivity" />
         <activity android:name=".AdminSponsorFiles.SponsorImagesActivity" />
-        <activity android:name=".AdminSponsorFiles.ShowSponsorImages"></activity>
-        <activity android:name=".RatePanditActivity"></activity>
+        <activity android:name=".AdminSponsorFiles.ShowSponsorImages" />
+        <activity android:name=".RatePanditActivity" />
+        <activity android:name=".PanditsClasses.PanditProfileActivity" />
+        <activity android:name=".PanditsClasses.AddPanditGalleryActivity"></activity>
     </application>
 
 </manifest>

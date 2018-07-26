@@ -66,6 +66,9 @@ public class PanditsFragment extends Fragment implements View.OnClickListener {
          textViewJyotish = (TextView) InputFragmentView.findViewById(R.id.jyotish);
          imageViewJyotish = (ImageView) InputFragmentView.findViewById(R.id.jyotishImage);
 
+        TextView textViewJyotish = (TextView) InputFragmentView.findViewById(R.id.jyotish);
+        ImageView imageViewJyotish = (ImageView) InputFragmentView.findViewById(R.id.jyotishImage);
+        ArrayList<ImageView> img = new ArrayList<>();
 
 
 

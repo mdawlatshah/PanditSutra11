@@ -16,15 +16,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.danial.panditsutra1.AdminFiles.AdminActivity;
-import com.example.danial.panditsutra1.AdminFiles.KundliPanditProfileActivity;
-import com.example.danial.panditsutra1.AdminFiles.PanditProfileActivity;
+import com.example.danial.panditsutra1.PanditsClasses.PanditProfileActivity;
 import com.example.danial.panditsutra1.ProfileClasses.UserProfile;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -255,24 +252,28 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             passwrodTxt.requestFocus();
             return;
         }
-//        pRef = pdata.getInstance().getReference().child("Pandits");
-//        pAuth = FirebaseAuth.getInstance();
-//
-//        pRef.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                String passc = dataSnapshot.child(pAuth.getUid()).child("userType").getValue().toString();
-//                if(passc.equals("Pandit")){
-//                    Toast.makeText(getApplicationContext(), "Yess", Toast.LENGTH_LONG).show();
-//                    startActivity(new Intent(MainActivity.this, PanditProfileActivity.class));
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//            }
-//
-//        }) ;
+
+        // for pandit users
+        pRef = pdata.getInstance().getReference().child("Pandits");
+        pAuth = FirebaseAuth.getInstance();
+
+        pRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String passc = dataSnapshot.child(pAuth.getUid()).child("userType").getValue().toString();
+                if(passc.equals("Pandit")){
+                    Toast.makeText(getApplicationContext(), "Yess", Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(MainActivity.this, PanditProfileActivity.class));
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+
+        }) ;
+
+        /// until here
 
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override

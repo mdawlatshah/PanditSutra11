@@ -1,12 +1,6 @@
 package com.example.danial.panditsutra1;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.location.Address;
-import android.location.Geocoder;
-import android.location.Location;
-import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -28,14 +22,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.example.danial.panditsutra1.AdminFiles.AdminActivity;
-import com.example.danial.panditsutra1.AdminFiles.KundliPanditProfileActivity;
-import com.example.danial.panditsutra1.AdminFiles.PanditProfileActivity;
 import com.example.danial.panditsutra1.AdminSponsorFiles.SponsorImageUploads;
 import com.example.danial.panditsutra1.AdminSponsorFiles.SponsorsImageAdapter;
 import com.example.danial.panditsutra1.ProfileClasses.KundliPandit;
@@ -54,10 +43,6 @@ import com.google.firebase.storage.FirebaseStorage;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.List;
-import java.util.Locale;
-import java.util.Timer;
-import java.util.TimerTask;
 
 //import android.widget.Toolbar;
 
@@ -258,33 +243,39 @@ public class AfterLogIn extends AppCompatActivity implements SponsorsImageAdapte
          myRef = firebaseDatabase.getInstance().getReference().child("Users");
         final PanditProfile userProfile = new PanditProfile();
         final KundliPandit kundllProfile = new KundliPandit();
-        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                String passc = dataSnapshot.child(mAuth.getUid()).child("userType").getValue().toString();
-                if(passc.equals("Pandit")){
-                    Toast.makeText(getApplicationContext(), "Yess", Toast.LENGTH_LONG).show();
-                    startActivity(new Intent(AfterLogIn.this, PanditProfileActivity.class));
-                } else if(passc.equals("kundliPandit"))
-                {
-                    Toast.makeText(getApplicationContext(), "kundliPandit", Toast.LENGTH_LONG).show();
-                    startActivity(new Intent(AfterLogIn.this, KundliPanditProfileActivity.class));
-                }else if(passc.equals("Admin")){
-                    startActivity(new Intent(AfterLogIn.this, AdminActivity.class));
-                    finish();
-                }
 
-                else{
-                 Toast.makeText(getApplicationContext(),"Users checked", Toast.LENGTH_LONG).show();
-                }
-            }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-            }
+        //for admin and other users
+//        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                String passc = dataSnapshot.child(mAuth.getUid()).child("userType").getValue().toString();
+//                if(passc.equals("Pandit")){
+//                    Toast.makeText(getApplicationContext(), "Yess", Toast.LENGTH_LONG).show();
+//                    startActivity(new Intent(AfterLogIn.this, PanditProfileActivity.class));
+//                } else if(passc.equals("Kundli_Pandit"))
+//                {
+//                    Toast.makeText(getApplicationContext(), "Kundli Pandit", Toast.LENGTH_LONG).show();
+//                    startActivity(new Intent(AfterLogIn.this, KundliPanditProfileActivity.class));
+//                }else if(passc.equals("Admin")){
+//                    startActivity(new Intent(AfterLogIn.this, AdminActivity.class));
+//                    finish();
+//                }
+//
+//                else{
+//                 Toast.makeText(getApplicationContext(),"Users checked", Toast.LENGTH_LONG).show();
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//            }
+//
+//        }) ;
 
-        }) ;
 
+
+        /////// until here
 
 
     }
