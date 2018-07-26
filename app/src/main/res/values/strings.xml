@@ -39,6 +39,26 @@
 
         >
     </string-array>
+    <string-array name="horoTypes">
+
+
+        <item>Aries</item>
+        <item>Taurus</item>
+        <item>Gemini</item>
+        <item>Cancer</item>
+        <item>Leo</item>
+        <item>Virgo</item>
+        <item>Libra</item>
+        <item>Scorpion</item>
+        <item>Sagittarius</item>
+        <item>Capricon</item>
+        <item>Aquarius</item>
+        <item>Pisces</item>
+
+
+
+        >
+    </string-array>
 
     >
 

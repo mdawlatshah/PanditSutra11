@@ -257,32 +257,32 @@ public class AfterLogIn extends AppCompatActivity implements SponsorsImageAdapte
          myRef = firebaseDatabase.getInstance().getReference().child("Users");
         final PanditProfile userProfile = new PanditProfile();
         final KundliPandit kundllProfile = new KundliPandit();
-//        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                String passc = dataSnapshot.child(mAuth.getUid()).child("userType").getValue().toString();
-//                if(passc.equals("Pandit")){
-//                    Toast.makeText(getApplicationContext(), "Yess", Toast.LENGTH_LONG).show();
-//                    startActivity(new Intent(AfterLogIn.this, PanditProfileActivity.class));
-//                } else if(passc.equals("Kundli_Pandit"))
-//                {
-//                    Toast.makeText(getApplicationContext(), "Kundli Pandit", Toast.LENGTH_LONG).show();
-//                    startActivity(new Intent(AfterLogIn.this, KundliPanditProfileActivity.class));
-//                }else if(passc.equals("Admin")){
-//                    startActivity(new Intent(AfterLogIn.this, AdminActivity.class));
-//                    finish();
-//                }
-//
-//                else{
-//                 Toast.makeText(getApplicationContext(),"Users checked", Toast.LENGTH_LONG).show();
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//            }
-//
-//        }) ;
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String passc = dataSnapshot.child(mAuth.getUid()).child("userType").getValue().toString();
+                if(passc.equals("Pandit")){
+                    Toast.makeText(getApplicationContext(), "Yess", Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(AfterLogIn.this, PanditProfileActivity.class));
+                } else if(passc.equals("kundliPandit"))
+                {
+                    Toast.makeText(getApplicationContext(), "kundliPandit", Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(AfterLogIn.this, KundliPanditProfileActivity.class));
+                }else if(passc.equals("Admin")){
+                    startActivity(new Intent(AfterLogIn.this, AdminActivity.class));
+                    finish();
+                }
+
+                else{
+                 Toast.makeText(getApplicationContext(),"Users checked", Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+
+        }) ;
 
 
 

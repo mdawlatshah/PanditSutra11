@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import com.example.danial.panditsutra1.AdminFiles.ViewPanditActivity;
 import com.example.danial.panditsutra1.MainActivity;
+import com.example.danial.panditsutra1.MainPageFiles.PanditsFragment;
 import com.example.danial.panditsutra1.ProfileActivity;
 import com.example.danial.panditsutra1.ProfileClasses.PanditProfile;
 import com.example.danial.panditsutra1.R;
@@ -57,6 +58,7 @@ public class UserViewPanditsActivity extends AppCompatActivity  {
     ArrayList<String> panditEmail;
     ArrayAdapter<String> adapter;
      int rateCounter;
+     String panditTypeSelected = PanditsFragment.panditTypeSelected.toString();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +75,7 @@ public class UserViewPanditsActivity extends AppCompatActivity  {
        // tvPremium3 = (TextView) findViewById(R.id.premiunPandit3);
 
         listView = (ListView) findViewById(R.id.listView);
+        Toast.makeText(getApplicationContext(), panditTypeSelected, Toast.LENGTH_SHORT).show();
 
 
         adapter = new ArrayAdapter<String>(this, R.layout.activity_user_view_pandit_temp,R.id.panditInfo ,arrayList);
@@ -86,22 +89,24 @@ public class UserViewPanditsActivity extends AppCompatActivity  {
                     for (DataSnapshot ds : dataSnapshot.getChildren()) {
 
                         Toast.makeText(getApplicationContext(), userLocation, Toast.LENGTH_LONG).show();
-                        if (ds.child("location").getValue().toString().toLowerCase().equals(userLocation) && ds.child("paymentType").getValue().toString().equals("Premium")) {
-                            Toast.makeText(getApplicationContext(), "Hello", Toast.LENGTH_LONG).show();
 
-                            panditProfile = ds.getValue(PanditProfile.class);
-                            ++i;
-                            arrayList.add("" + i);
-                            String pName = panditProfile.getName().toString();
-                            String pEmail = panditProfile.getEmail().toString();
-                            String pPhone = panditProfile.getPhone().toString();
-                            String pType = panditProfile.getType().toString();
-                            float pRating = panditProfile.getRating();
-                             rateCounter = panditProfile.getRateCounter();
+                            if (ds.child("location").getValue().toString().toLowerCase().equals(userLocation) && ds.child("paymentType").getValue().toString().equals("Premium")
+                            ) {
+                                Toast.makeText(getApplicationContext(), "Hello", Toast.LENGTH_LONG).show();
+
+                                panditProfile = ds.getValue(PanditProfile.class);
+                                ++i;
+                                arrayList.add("" + i);
+                                String pName = panditProfile.getName().toString();
+                                String pEmail = panditProfile.getEmail().toString();
+                                String pPhone = panditProfile.getPhone().toString();
+                                String pType = panditProfile.getType().toString();
+                                float pRating = panditProfile.getRating();
+                                rateCounter = panditProfile.getRateCounter();
 
 
-                            arrayList.add(pName+ " , " + pEmail+" , "+ pPhone + " , "+ pType +" , "+pRating + " , " + rateCounter);
-                            panditEmail.add(pEmail);
+                                arrayList.add(pName + " , " + pEmail + " , " + pPhone + " , " + pType + " , " + pRating + " , " + rateCounter);
+                                panditEmail.add(pEmail);
 
 //                            if (i == 1){
 //                                String x = String.valueOf(arrayList);
@@ -125,7 +130,8 @@ public class UserViewPanditsActivity extends AppCompatActivity  {
 //                            tvList.setText(arrayList.toString());
 
 
-                    }
+                            }
+
                         listView.setAdapter(adapter);
                 }
             }

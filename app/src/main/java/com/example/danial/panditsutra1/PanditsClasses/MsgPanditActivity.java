@@ -80,6 +80,7 @@ public class MsgPanditActivity extends AppCompatActivity implements  DatePickerD
                 userEmail = (dataSnapshot.child(userId).child("userEmail").getValue().toString() );
 
 
+
                 Toast.makeText(getApplicationContext(), userName + " " + userPhone + " " + userEmail, Toast.LENGTH_LONG).show();
 
             }
@@ -91,6 +92,7 @@ public class MsgPanditActivity extends AppCompatActivity implements  DatePickerD
 
 
         });
+
 
 
         tvDateNTime.setOnClickListener(new View.OnClickListener() {
@@ -118,7 +120,9 @@ public class MsgPanditActivity extends AppCompatActivity implements  DatePickerD
         rCounter = myList.get(5).toString().trim();
 
         rateCounter = Integer.parseInt(rCounter);
+
         pPrevRate = Float.parseFloat(previousRating);
+        ratingBar.setRating(pPrevRate);
 
 
 

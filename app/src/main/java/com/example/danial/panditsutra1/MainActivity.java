@@ -255,24 +255,24 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             passwrodTxt.requestFocus();
             return;
         }
-        pRef = pdata.getInstance().getReference().child("Pandits");
-        pAuth = FirebaseAuth.getInstance();
-
-        pRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                String passc = dataSnapshot.child(pAuth.getUid()).child("userType").getValue().toString();
-                if(passc.equals("Pandit")){
-                    Toast.makeText(getApplicationContext(), "Yess", Toast.LENGTH_LONG).show();
-                    startActivity(new Intent(MainActivity.this, PanditProfileActivity.class));
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-            }
-
-        }) ;
+//        pRef = pdata.getInstance().getReference().child("Pandits");
+//        pAuth = FirebaseAuth.getInstance();
+//
+//        pRef.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                String passc = dataSnapshot.child(pAuth.getUid()).child("userType").getValue().toString();
+//                if(passc.equals("Pandit")){
+//                    Toast.makeText(getApplicationContext(), "Yess", Toast.LENGTH_LONG).show();
+//                    startActivity(new Intent(MainActivity.this, PanditProfileActivity.class));
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//            }
+//
+//        }) ;
 
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
@@ -296,6 +296,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
     private  void checkEmailVerification(){
         FirebaseUser firebaseUser = mAuth.getInstance().getCurrentUser();
+        mAuth.getCurrentUser().getUid();
         Boolean emailflag = firebaseUser.isEmailVerified();
         if(emailflag){
 //            finish();

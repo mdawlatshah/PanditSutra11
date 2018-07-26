@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
+
 import com.example.danial.panditsutra1.R;
 import com.example.danial.panditsutra1.RashifalFiles.RashifalActivity;
 
@@ -16,7 +18,7 @@ import com.example.danial.panditsutra1.RashifalFiles.RashifalActivity;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class RashiFragment extends Fragment implements View.OnClickListener {
+public class RashiFragment extends Fragment  {
 
 
     public RashiFragment() {
@@ -44,25 +46,27 @@ public class RashiFragment extends Fragment implements View.OnClickListener {
         ImageView buttonViewAquarius = (ImageView) InputFragmentView.findViewById(R.id.aquarius);
         ImageView buttonViewPisces = (ImageView) InputFragmentView.findViewById(R.id.pisces);
 
-        buttonViewAries.setOnClickListener(this);
-        buttonViewTaurus.setOnClickListener(this);
-        buttonViewGemini.setOnClickListener(this);
-        buttonViewCancer.setOnClickListener(this);
-        buttonViewLeo.setOnClickListener(this);
-        buttonViewVirgo.setOnClickListener(this);
-        buttonViewLibra.setOnClickListener(this);
-        buttonViewScorpio.setOnClickListener(this);
-        buttonViewSagittarius.setOnClickListener(this);
-        buttonViewCapricorn.setOnClickListener(this);
-        buttonViewAquarius.setOnClickListener(this);
-        buttonViewPisces.setOnClickListener(this);
+//        buttonViewAries.setOnClickListener(this);
+//        buttonViewTaurus.setOnClickListener(this);
+//        buttonViewGemini.setOnClickListener(this);
+//        buttonViewCancer.setOnClickListener(this);
+//        buttonViewLeo.setOnClickListener(this);
+//        buttonViewVirgo.setOnClickListener(this);
+//        buttonViewLibra.setOnClickListener(this);
+//        buttonViewScorpio.setOnClickListener(this);
+//        buttonViewSagittarius.setOnClickListener(this);
+//        buttonViewCapricorn.setOnClickListener(this);
+//        buttonViewAquarius.setOnClickListener(this);
+//        buttonViewPisces.setOnClickListener(this);
 
         return InputFragmentView;
     }
-
-    @Override
-    public void onClick(View v) {
-        Intent intent = new Intent(getActivity(), RashifalActivity.class);
-        startActivity(intent);
+    public void onClickRashi (View view)
+    {
+        if(view.getId() == R.id.aries) {
+//            startActivity(new Intent(RashiFragment.this, RashifalActivity.class));
+        }
     }
+
+
 }

@@ -5,9 +5,11 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.danial.panditsutra1.BarColors;
@@ -26,6 +28,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class AddKundliPanditActivity extends AppCompatActivity {
 
+    Spinner paymentSpinner, typeSpinner;
     //  ArrayList<String> paymentArray, typeArray;
     ArrayAdapter<CharSequence> payment_adapter, type_adapter;
 
@@ -33,15 +36,14 @@ public class AddKundliPanditActivity extends AppCompatActivity {
     private EditText etName, etEmail,etPhone, etPassword, etLocation;
     private Button addPandit;
     private FirebaseAuth mAuth;
-    public String kName, kEmail, kPhone, kPassword;
-    String userType = "Kundli_Pandit";
-    String horoType = " ";
+    public String pName, pEmail, pPhone, pPassword, pLocation, pType, pPaymentType;
+    public String pPayment = " ";
+    String userType = "kundliPandit";
+    String panditType = " ";
+    float rate = (float) 0.0;
+    int counter = 0;
 
-     String health = " ";
-     String travel = " ";
-     String professional = " ";
-     String personal = " ";
-     String luck = " ";
+
 
 
 
@@ -52,11 +54,11 @@ public class AddKundliPanditActivity extends AppCompatActivity {
 
         BarColors.colorBars(this, R.color.status_bar);
 
-        etName = (EditText) findViewById(R.id.kpName);
-        etEmail = (EditText) findViewById(R.id.kpEmail);
-        etPhone = (EditText) findViewById(R.id.kpPhone);
-        etPassword = (EditText) findViewById(R.id.kpPassword);
-
+        etName = (EditText) findViewById(R.id.pdName);
+        etEmail = (EditText) findViewById(R.id.pdEmail);
+        etPhone = (EditText) findViewById(R.id.pdPhone);
+        etPassword = (EditText) findViewById(R.id.pdPassword);
+        etLocation = (EditText) findViewById(R.id.pdLocation);
 
         addPandit = (Button) findViewById(R.id.addKPandit);
 
@@ -64,17 +66,20 @@ public class AddKundliPanditActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
 
+
+
     }
 
 
     public void onClick(View view) {
-        kName = etName.getText().toString();
-        kEmail = etEmail.getText().toString();
-        kPhone = etPhone.getText().toString().trim();
-        kPassword = etPassword.getText().toString();
+        pName = etName.getText().toString();
+        pEmail = etEmail.getText().toString();
+        pPhone = etPhone.getText().toString().trim();
+        pPassword = etPassword.getText().toString();
+        pLocation = etLocation.getText().toString();
 
 
-        mAuth.createUserWithEmailAndPassword(kEmail, kPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        mAuth.createUserWithEmailAndPassword(pEmail,pPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
@@ -82,10 +87,9 @@ public class AddKundliPanditActivity extends AppCompatActivity {
                     sendEmailVerification();
 
                     Toast.makeText(getApplicationContext(), " Successfully Added", Toast.LENGTH_LONG).show();
-                   // KundliPandit kundliPandit = new KundliPandit(userType, horoType, kName, kEmail, kPhone);
-                    KundliPandit kundliPandit = new KundliPandit(userType, horoType, kName, kEmail, kPhone, health, travel, professional, personal, luck);
+                    PanditProfile panditProfile = new PanditProfile(userType, pName,pEmail,pPhone,pLocation,pPayment,panditType, rate, counter);
                     final String userId =mAuth.getUid();
-                    mDatabase.child("kundliPandit").child(userId).setValue(kundliPandit);
+                    mDatabase.child("Pandits").child(userId).setValue(panditProfile);
 
                 }else {
 

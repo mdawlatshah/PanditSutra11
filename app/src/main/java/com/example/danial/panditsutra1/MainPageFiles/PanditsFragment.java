@@ -12,13 +12,16 @@ import android.widget.TextView;
 
 import com.example.danial.panditsutra1.R;
 
+import java.util.ArrayList;
+
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class PanditsFragment extends Fragment implements View.OnClickListener {
 
-
+        public  static  String panditTypeSelected;
+    Intent intent = new Intent();
     public PanditsFragment() {
         // Required empty public constructor
     }
@@ -48,23 +51,31 @@ public class PanditsFragment extends Fragment implements View.OnClickListener {
 
         TextView textViewJyotish = (TextView) InputFragmentView.findViewById(R.id.jyotish);
         ImageView imageViewJyotish = (ImageView) InputFragmentView.findViewById(R.id.jyotishImage);
+        ArrayList<ImageView> img = new ArrayList<>();
 
-        textViewVastul.setOnClickListener(this);
-        imageViewVastul.setOnClickListener(this);
-        textViewaAtrologal.setOnClickListener(this);
-        imageViewAstrologal.setOnClickListener(this);
-        textViewSastri.setOnClickListener(this);
-        imageViewSastri.setOnClickListener(this);
-        textViewByias.setOnClickListener(this);
-        imageViewByias.setOnClickListener(this);
-        textViewMohant.setOnClickListener(this);
-        imageViewMohant.setOnClickListener(this);
-        textViewJyotish.setOnClickListener(this);
-        imageViewJyotish.setOnClickListener(this);
+
+
+//        panditTypeSelected = "vstul";
+//       textViewVastul.setOnClickListener(this);
+//        imageViewVastul.setOnClickListener(this);
+//
+//        panditTypeSelected = "astrologal";
+//        textViewaAtrologal.setOnClickListener(this);
+//        imageViewAstrologal.setOnClickListener(this);
+//        textViewSastri.setOnClickListener(this);
+//        imageViewSastri.setOnClickListener(this);
+//        textViewByias.setOnClickListener(this);
+//        imageViewByias.setOnClickListener(this);
+//        textViewMohant.setOnClickListener(this);
+//        imageViewMohant.setOnClickListener(this);
+//        textViewJyotish.setOnClickListener(this);
+//        imageViewJyotish.setOnClickListener(this);
 
 
         return InputFragmentView;
     }
+
+
 
 
     @Override
@@ -73,46 +84,59 @@ public class PanditsFragment extends Fragment implements View.OnClickListener {
         Intent intent = new Intent(getActivity(), UserViewPanditsActivity.class);
         startActivity(intent);
 
-        //in case they have different layouts ...
-//        switch (view.getId()) {
-//            case R.id.vastulImage:
-//                startActivity(intent);
-//                break;
+//        in case they have different layouts ...
+        switch (view.getId()) {
+            case R.id.vastulImage:
+                panditTypeSelected = "vastul";
+//                startActivity(new Intent(PanditsFragment.this, UserViewPanditsActivity.class));
+                break;
 //            case R.id.vastul:
 //                startActivity(intent);
+//                panditTypeSelected = "vastul";
 //                break;
 //            case R.id.astrologalImage:
+//                panditTypeSelected = "astrologal";
 //                startActivity(intent);
 //                break;
 //            case R.id.astrologal:
+//                    panditTypeSelected = "astrologal";
 //                startActivity(intent);
 //                break;
 //            case R.id.sastriImage:
+//                panditTypeSelected = "sastri";
 //                startActivity(intent);
 //                break;
 //            case R.id.sastri:
+//                panditTypeSelected = "sastri";
 //                startActivity(intent);
 //                break;
 //            case R.id.byiasImage:
+//                panditTypeSelected = "byias";
 //                startActivity(intent);
 //                break;
 //            case R.id.byias:
+//                panditTypeSelected = "byias";
 //                startActivity(intent);
 //                break;
 //            case R.id.mohantImage:
+//                panditTypeSelected = "mohant";
 //                startActivity(intent);
 //                break;
 //            case R.id.mohant:
+//                panditTypeSelected = "mohant";
 //                startActivity(intent);
 //                break;
 //            case R.id.jyotishImage:
+//                panditTypeSelected = "jyotish";
 //                startActivity(intent);
 //                break;
 //            case R.id.jyotish:
+//                panditTypeSelected = "jyotish";
 //                startActivity(intent);
 //                break;
-//        }
+        }
 
 
     }
+
 }
