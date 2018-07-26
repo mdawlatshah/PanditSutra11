@@ -33,6 +33,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
@@ -44,12 +45,13 @@ public class UserViewPanditsActivity extends AppCompatActivity  {
     DatabaseReference ref;
     private FirebaseDatabase database;
     ArrayList<String> arrayList;
+    ArrayList<String> randomArrayList;
     PanditProfile panditProfile = new PanditProfile();
     int i = 0;
     TextView tvPremium1;
     TextView tvPremium2;
     TextView tvPremium3;
-    String userLocation = MainActivity.userLocation;
+    String userLocation = MainActivity.userLocation.toString().trim().toLowerCase();
     ListView listView;
 
     String userName;
@@ -88,12 +90,9 @@ public class UserViewPanditsActivity extends AppCompatActivity  {
 
                     for (DataSnapshot ds : dataSnapshot.getChildren()) {
 
-                        Toast.makeText(getApplicationContext(), userLocation, Toast.LENGTH_LONG).show();
 
-                            if (ds.child("location").getValue().toString().toLowerCase().equals(userLocation) && ds.child("paymentType").getValue().toString().equals("Premium")
-                            ) {
-                                Toast.makeText(getApplicationContext(), "Hello", Toast.LENGTH_LONG).show();
 
+                            if (ds.child("type").getValue().toString().toLowerCase().equals(panditTypeSelected) &&ds.child("location").getValue().toString().toLowerCase().equals(userLocation) && ds.child("paymentType").getValue().toString().equals("Premium")) {
                                 panditProfile = ds.getValue(PanditProfile.class);
                                 ++i;
                                 arrayList.add("" + i);
@@ -103,36 +102,55 @@ public class UserViewPanditsActivity extends AppCompatActivity  {
                                 String pType = panditProfile.getType().toString();
                                 float pRating = panditProfile.getRating();
                                 rateCounter = panditProfile.getRateCounter();
+                                String[] sm = ds.getRef().toString().split("/");
+                                String panditID = sm[sm.length - 1];
 
 
-                                arrayList.add(pName + " , " + pEmail + " , " + pPhone + " , " + pType + " , " + pRating + " , " + rateCounter);
+                                arrayList.add(pName + " , " + pEmail + " , " + pPhone + " , " + pType + " , " + pRating + " , " + rateCounter+ " , " + panditID);
                                 panditEmail.add(pEmail);
 
-//                            if (i == 1){
-//                                String x = String.valueOf(arrayList);
-//                                x.split(",");
-//                                tvPremium1.setText(x);
-//                                arrayList.clear();
-//
-//                            }
-//                            if (i == 2){
-//                                tvPremium2.setText(arrayList.toString());
-//                                arrayList.clear();
-//
-//                            }
-//                            if (i == 3){
-//                                tvPremium3.setText(arrayList.toString());
-//                                arrayList.clear();
-//
-//                            }
-
-
-//                            tvList.setText(arrayList.toString());
-
-
                             }
+                        if (ds.child("type").getValue().toString().toLowerCase().equals(panditTypeSelected) &&ds.child("location").getValue().toString().toLowerCase().equals(userLocation) && ds.child("paymentType").getValue().toString().equals("Paid")) {
 
-                        listView.setAdapter(adapter);
+                            panditProfile = ds.getValue(PanditProfile.class);
+                            ++i;
+                            arrayList.add("" + i);
+                            String pName = panditProfile.getName().toString();
+                            String pEmail = panditProfile.getEmail().toString();
+                            String pPhone = panditProfile.getPhone().toString();
+                            String pType = panditProfile.getType().toString();
+                            float pRating = panditProfile.getRating();
+                            rateCounter = panditProfile.getRateCounter();
+                            String[] sm = ds.getRef().toString().split("/");
+                            String panditID = sm[sm.length - 1];
+
+                            arrayList.add(pName + " , " + pEmail + " , " + pPhone + " , " + pType + " , " + pRating + " , " + rateCounter+ " , " + panditID);
+                            panditEmail.add(pEmail);
+
+                        }
+                        if (ds.child("type").getValue().toString().toLowerCase().equals(panditTypeSelected) &&ds.child("location").getValue().toString().toLowerCase().equals(userLocation) && ds.child("paymentType").getValue().toString().equals("unPaid")) {
+                            panditProfile = ds.getValue(PanditProfile.class);
+                            ++i;
+                            randomArrayList.add("" + i);
+                            String pName = panditProfile.getName().toString();
+                            String pEmail = panditProfile.getEmail().toString();
+                            String pPhone = panditProfile.getPhone().toString();
+                            String pType = panditProfile.getType().toString();
+                            String[] sm = ds.getRef().toString().split("/");
+                            String panditID = sm[sm.length - 1];
+                            float pRating = panditProfile.getRating();
+                            rateCounter = panditProfile.getRateCounter();
+
+
+                            randomArrayList.add(pName + " , " + pEmail + " , " + pPhone + " , " + pType + " , " + pRating + " , " + rateCounter + " , " + panditID);
+                            panditEmail.add(pEmail);
+                            Collections.shuffle(randomArrayList);
+                            arrayList = randomArrayList;
+                        }
+
+
+
+                            listView.setAdapter(adapter);
                 }
             }
 

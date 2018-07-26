@@ -1,4 +1,5 @@
 package com.example.danial.panditsutra1.MainPageFiles;
+import com.example.danial.panditsutra1.AfterLogIn;
 import com.example.danial.panditsutra1.PanditsClasses.UserViewPanditsActivity;
 
 import android.content.Intent;
@@ -20,7 +21,20 @@ import java.util.ArrayList;
  */
 public class PanditsFragment extends Fragment implements View.OnClickListener {
 
-        public  static  String panditTypeSelected;
+    TextView textViewVastul;
+    ImageView imageViewVastul;
+    TextView textViewaAtrologal;
+    ImageView imageViewAstrologal;
+    TextView textViewSastri;
+    ImageView imageViewSastri;
+    TextView textViewByias;
+    ImageView imageViewByias;
+    TextView textViewMohant;
+    ImageView imageViewMohant;
+    TextView textViewJyotish;
+    ImageView imageViewJyotish;
+
+    public  static  String panditTypeSelected;
     Intent intent = new Intent();
     public PanditsFragment() {
         // Required empty public constructor
@@ -34,42 +48,41 @@ public class PanditsFragment extends Fragment implements View.OnClickListener {
         View InputFragmentView = inflater.inflate(R.layout.fragment_pandit, container, false);
 
 
-        TextView textViewVastul = (TextView) InputFragmentView.findViewById(R.id.vastul);
-        ImageView imageViewVastul = (ImageView) InputFragmentView.findViewById(R.id.vastulImage);
+         textViewVastul = (TextView) InputFragmentView.findViewById(R.id.vastul);
+         imageViewVastul = (ImageView) InputFragmentView.findViewById(R.id.vastulImage);
 
-        TextView textViewaAtrologal = (TextView) InputFragmentView.findViewById(R.id.astrologal);
-        ImageView imageViewAstrologal = (ImageView) InputFragmentView.findViewById(R.id.astrologalImage);
+         textViewaAtrologal = (TextView) InputFragmentView.findViewById(R.id.astrologal);
+         imageViewAstrologal = (ImageView) InputFragmentView.findViewById(R.id.astrologalImage);
 
-        TextView textViewSastri = (TextView) InputFragmentView.findViewById(R.id.sastri);
-        ImageView imageViewSastri = (ImageView) InputFragmentView.findViewById(R.id.sastriImage);
+         textViewSastri = (TextView) InputFragmentView.findViewById(R.id.sastri);
+         imageViewSastri = (ImageView) InputFragmentView.findViewById(R.id.sastriImage);
 
-        TextView textViewByias = (TextView) InputFragmentView.findViewById(R.id.byias);
-        ImageView imageViewByias = (ImageView) InputFragmentView.findViewById(R.id.byiasImage);
+         textViewByias = (TextView) InputFragmentView.findViewById(R.id.byias);
+         imageViewByias = (ImageView) InputFragmentView.findViewById(R.id.byiasImage);
 
-        TextView textViewMohant = (TextView) InputFragmentView.findViewById(R.id.mohant);
-        ImageView imageViewMohant = (ImageView) InputFragmentView.findViewById(R.id.mohantImage);
+         textViewMohant = (TextView) InputFragmentView.findViewById(R.id.mohant);
+         imageViewMohant = (ImageView) InputFragmentView.findViewById(R.id.mohantImage);
 
-        TextView textViewJyotish = (TextView) InputFragmentView.findViewById(R.id.jyotish);
-        ImageView imageViewJyotish = (ImageView) InputFragmentView.findViewById(R.id.jyotishImage);
-        ArrayList<ImageView> img = new ArrayList<>();
-
+         textViewJyotish = (TextView) InputFragmentView.findViewById(R.id.jyotish);
+         imageViewJyotish = (ImageView) InputFragmentView.findViewById(R.id.jyotishImage);
 
 
-//        panditTypeSelected = "vstul";
-//       textViewVastul.setOnClickListener(this);
-//        imageViewVastul.setOnClickListener(this);
-//
-//        panditTypeSelected = "astrologal";
-//        textViewaAtrologal.setOnClickListener(this);
-//        imageViewAstrologal.setOnClickListener(this);
-//        textViewSastri.setOnClickListener(this);
-//        imageViewSastri.setOnClickListener(this);
-//        textViewByias.setOnClickListener(this);
-//        imageViewByias.setOnClickListener(this);
-//        textViewMohant.setOnClickListener(this);
-//        imageViewMohant.setOnClickListener(this);
-//        textViewJyotish.setOnClickListener(this);
-//        imageViewJyotish.setOnClickListener(this);
+
+
+       textViewVastul.setOnClickListener(this);
+        imageViewVastul.setOnClickListener(this);
+
+
+        textViewaAtrologal.setOnClickListener(this);
+        imageViewAstrologal.setOnClickListener(this);
+        textViewSastri.setOnClickListener(this);
+        imageViewSastri.setOnClickListener(this);
+        textViewByias.setOnClickListener(this);
+        imageViewByias.setOnClickListener(this);
+        textViewMohant.setOnClickListener(this);
+        imageViewMohant.setOnClickListener(this);
+        textViewJyotish.setOnClickListener(this);
+        imageViewJyotish.setOnClickListener(this);
 
 
         return InputFragmentView;
@@ -82,58 +95,60 @@ public class PanditsFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
 
         Intent intent = new Intent(getActivity(), UserViewPanditsActivity.class);
-        startActivity(intent);
+
+
+
 
 //        in case they have different layouts ...
         switch (view.getId()) {
             case R.id.vastulImage:
-                panditTypeSelected = "vastul";
-//                startActivity(new Intent(PanditsFragment.this, UserViewPanditsActivity.class));
+                panditTypeSelected = "vastu";
+                startActivity(intent);
                 break;
-//            case R.id.vastul:
-//                startActivity(intent);
-//                panditTypeSelected = "vastul";
-//                break;
-//            case R.id.astrologalImage:
-//                panditTypeSelected = "astrologal";
-//                startActivity(intent);
-//                break;
-//            case R.id.astrologal:
-//                    panditTypeSelected = "astrologal";
-//                startActivity(intent);
-//                break;
-//            case R.id.sastriImage:
-//                panditTypeSelected = "sastri";
-//                startActivity(intent);
-//                break;
-//            case R.id.sastri:
-//                panditTypeSelected = "sastri";
-//                startActivity(intent);
-//                break;
-//            case R.id.byiasImage:
-//                panditTypeSelected = "byias";
-//                startActivity(intent);
-//                break;
-//            case R.id.byias:
-//                panditTypeSelected = "byias";
-//                startActivity(intent);
-//                break;
-//            case R.id.mohantImage:
-//                panditTypeSelected = "mohant";
-//                startActivity(intent);
-//                break;
-//            case R.id.mohant:
-//                panditTypeSelected = "mohant";
-//                startActivity(intent);
-//                break;
-//            case R.id.jyotishImage:
-//                panditTypeSelected = "jyotish";
-//                startActivity(intent);
-//                break;
-//            case R.id.jyotish:
-//                panditTypeSelected = "jyotish";
-//                startActivity(intent);
-//                break;
+            case R.id.vastul:
+                startActivity(intent);
+                panditTypeSelected = "vastu";
+                break;
+            case R.id.astrologalImage:
+                panditTypeSelected = "astrologal";
+                startActivity(intent);
+                break;
+            case R.id.astrologal:
+                    panditTypeSelected = "astrologal";
+                startActivity(intent);
+                break;
+            case R.id.sastriImage:
+                panditTypeSelected = "sastri";
+                startActivity(intent);
+                break;
+            case R.id.sastri:
+                panditTypeSelected = "sastri";
+                startActivity(intent);
+                break;
+            case R.id.byiasImage:
+                panditTypeSelected = "byias";
+                startActivity(intent);
+                break;
+            case R.id.byias:
+                panditTypeSelected = "byias";
+                startActivity(intent);
+                break;
+            case R.id.mohantImage:
+                panditTypeSelected = "mohant";
+                startActivity(intent);
+                break;
+            case R.id.mohant:
+                panditTypeSelected = "mohant";
+                startActivity(intent);
+                break;
+            case R.id.jyotishImage:
+                panditTypeSelected = "jyotish";
+                startActivity(intent);
+                break;
+            case R.id.jyotish:
+                panditTypeSelected = "jyotish";
+                startActivity(intent);
+                break;
         }
 
 
