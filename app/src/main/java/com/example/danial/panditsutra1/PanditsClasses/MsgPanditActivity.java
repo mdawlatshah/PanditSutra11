@@ -10,12 +10,14 @@ import android.view.autofill.AutofillValue;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 import android.text.format.DateFormat;
 
+import com.example.danial.panditsutra1.ProfileClasses.AppointmentClass;
 import com.example.danial.panditsutra1.R;
 import com.example.danial.panditsutra1.RatePanditActivity;
 import com.google.firebase.auth.FirebaseAuth;
@@ -37,7 +39,9 @@ public class MsgPanditActivity extends AppCompatActivity implements  DatePickerD
     TextView textView, tvDateNTime;
     Button sentBtn;
    public static String panditEmail;
-    String panditType;
+    String panditType, panditName, panditPhone;
+
+    private DatabaseReference appointmentDatabase;
 
     private FirebaseAuth mAuth;
     private FirebaseDatabase mFirebaseDatabase;
@@ -55,13 +59,20 @@ public class MsgPanditActivity extends AppCompatActivity implements  DatePickerD
     String previousRating;
    public static int rateCounter;
     String rCounter;
+    EditText adressEt;
+    public String address;
+    public  String panditId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_msg_pandit);
+
+        adressEt = (EditText) findViewById(R.id.edAdress);
+        address = adressEt.getText().toString();
     textView = (TextView) findViewById(R.id.tvInfo);
     sentBtn = (Button) findViewById( R.id.sendMsgButton);
     tvDateNTime = (TextView) findViewById(R.id.dateAndTime);
+        appointmentDatabase = FirebaseDatabase.getInstance().getReference();
 
     Bundle bundle = getIntent().getExtras();
         mAuth = FirebaseAuth.getInstance();
@@ -113,11 +124,15 @@ public class MsgPanditActivity extends AppCompatActivity implements  DatePickerD
 
         textView.setText(myList.get(1).toString());
 
-
-        panditEmail = myList.get(1).toString();
-        panditType = myList.get(3).toString();
+        panditName = myList.get(0).toString().trim();
+        panditEmail = myList.get(1).toString().trim();
+        panditPhone = myList.get(2).toString().trim();
+        panditType = myList.get(3).toString().trim();
         previousRating = myList.get(4).toString().trim();
         rCounter = myList.get(5).toString().trim();
+        panditId = myList.get(6).toString().trim();
+
+        Toast.makeText(getApplicationContext(), panditId, Toast.LENGTH_SHORT).show();
 
         rateCounter = Integer.parseInt(rCounter);
 
@@ -131,6 +146,7 @@ public class MsgPanditActivity extends AppCompatActivity implements  DatePickerD
             @Override
             public void onClick(View v) {
 
+                    sentDatabase();
                     sentMsg();
             }
         });
@@ -142,6 +158,17 @@ public class MsgPanditActivity extends AppCompatActivity implements  DatePickerD
         });
 
     }
+    private  void sentDatabase()
+    {
+        address = adressEt.getText().toString();
+
+        String kk = (yearFinal + "." + monthFinal + "." + dayFinal + " - "
+                + hourFinal + ":" + minuteFinal);
+        String appStr = userName +" - " + panditName;
+        AppointmentClass appointmentClass = new AppointmentClass(userName, userEmail,userPhone, panditName,panditEmail, panditPhone, kk, address );
+        appointmentDatabase.child("Appointments").child(appStr).setValue(appointmentClass);
+        Toast.makeText(getApplicationContext(),"Successfully added", Toast.LENGTH_LONG).show();
+    }
     private void sentMsg(){
 
         String email = panditEmail;
@@ -151,7 +178,8 @@ public class MsgPanditActivity extends AppCompatActivity implements  DatePickerD
         intent.putExtra(Intent.EXTRA_SUBJECT, "Appointment for Pooja");
         intent.putExtra(Intent.EXTRA_TEXT, "Dear Sir,\n\n" +
                 "I would like to take an appointment for " + dayFinal + "." + monthFinal + "." + yearFinal + " at "+
-        hourFinal + ":" + minuteFinal + " for " + panditType + " Pooja. \nPlease take my appointment into considaration." +
+        hourFinal + ":" + minuteFinal + " for " + panditType + " Pooja. \nPlease take my appointment into considaration.\n"
+                + "My address is: " + address +
                 "\n\nSincerely,\n" + userName + "\n" + userPhone );
         intent.setType("message/rfc822");
         startActivity(Intent.createChooser(intent, "Choose Email-Sending Application"));

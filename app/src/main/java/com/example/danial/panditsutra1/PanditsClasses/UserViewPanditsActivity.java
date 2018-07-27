@@ -70,7 +70,7 @@ public class UserViewPanditsActivity extends AppCompatActivity  {
         panditEmail = new ArrayList<>();
         database = FirebaseDatabase.getInstance();
         ref = database.getReference();
-
+        randomArrayList = new ArrayList<>();
 
   //      tvPremium1 = (TextView) findViewById(R.id.pp1Name);
       //  tvPremium2 = (TextView) findViewById(R.id.premiunPandit2);
@@ -128,7 +128,7 @@ public class UserViewPanditsActivity extends AppCompatActivity  {
                             panditEmail.add(pEmail);
 
                         }
-                        if (ds.child("type").getValue().toString().toLowerCase().equals(panditTypeSelected) &&ds.child("location").getValue().toString().toLowerCase().equals(userLocation) && ds.child("paymentType").getValue().toString().equals("unPaid")) {
+                        if (ds.child("type").getValue().toString().toLowerCase().equals(panditTypeSelected) &&ds.child("location").getValue().toString().toLowerCase().equals(userLocation) && ds.child("paymentType").getValue().toString().trim().equals("unPaid")) {
                             panditProfile = ds.getValue(PanditProfile.class);
                             ++i;
                             randomArrayList.add("" + i);

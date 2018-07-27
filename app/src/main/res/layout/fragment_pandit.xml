@@ -104,7 +104,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="@font/aclonica"
-                    android:text="Sastri"
+                    android:text="Sashtri"
                     android:textAllCaps="true"
                     android:textSize="18sp" />
 

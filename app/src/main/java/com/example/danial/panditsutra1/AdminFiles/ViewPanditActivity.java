@@ -66,9 +66,8 @@ public class ViewPanditActivity extends AppCompatActivity {
                         panditProfile = ds.getValue(PanditProfile.class);
                         ++i;
 
-                        arrayList.add("" + i);
-                        arrayList.add(panditProfile.getName().toString());
-                        arrayList.add(panditProfile.getEmail().toString());
+                        arrayList.add( i + ": " + panditProfile.getName() + " , " + panditProfile.getEmail());
+
 
                 }
                 listView.setAdapter(adapter);

@@ -64,7 +64,9 @@
         <activity android:name=".AdminSponsorFiles.ShowSponsorImages" />
         <activity android:name=".RatePanditActivity" />
         <activity android:name=".PanditsClasses.PanditProfileActivity" />
-        <activity android:name=".PanditsClasses.AddPanditGalleryActivity"></activity>
+        <activity android:name=".PanditsClasses.AddPanditGalleryActivity" />
+        <activity android:name=".PanditsClasses.DeleteAppointmentActivity" />
+        <activity android:name=".ViewAppointmentsActivity"></activity>
     </application>
 
 </manifest>

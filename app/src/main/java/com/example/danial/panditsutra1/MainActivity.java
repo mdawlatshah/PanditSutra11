@@ -116,6 +116,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "LoginBtn", Toast.LENGTH_SHORT).show();
                 userLogin();
             }
         });
@@ -253,28 +254,28 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             return;
         }
 
-        // for pandit users
-        pRef = pdata.getInstance().getReference().child("Pandits");
-        pAuth = FirebaseAuth.getInstance();
-
-        pRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                String passc = dataSnapshot.child(pAuth.getUid()).child("userType").getValue().toString();
-                if(passc.equals("Pandit")){
-                    Toast.makeText(getApplicationContext(), "Yess", Toast.LENGTH_LONG).show();
-                    startActivity(new Intent(MainActivity.this, PanditProfileActivity.class));
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-            }
-
-        }) ;
-
-        /// until here
-
+//         for pandit users
+//        pRef = pdata.getInstance().getReference().child("Pandits");
+//        pAuth = FirebaseAuth.getInstance();
+//
+//        pRef.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                String passc = dataSnapshot.child(pAuth.getUid()).child("userType").getValue().toString();
+//                if(passc.equals("Pandit")){
+//                    Toast.makeText(getApplicationContext(), "Yess", Toast.LENGTH_LONG).show();
+//                    startActivity(new Intent(MainActivity.this, PanditProfileActivity.class));
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//            }
+//
+//        }) ;
+//
+//        /// until here
+//
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
