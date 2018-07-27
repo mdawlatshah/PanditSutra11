@@ -138,8 +138,8 @@ public class MsgPanditActivity extends AppCompatActivity implements  DatePickerD
 
         pPrevRate = Float.parseFloat(previousRating);
         ratingBar.setRating(pPrevRate);
-
-
+//
+//
 
 
         sentBtn.setOnClickListener(new View.OnClickListener() {
