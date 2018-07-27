@@ -140,7 +140,8 @@ public class UserViewPanditsActivity extends AppCompatActivity  {
                             String panditID = sm[sm.length - 1];
                             float pRating = panditProfile.getRating();
                             rateCounter = panditProfile.getRateCounter();
-
+//
+                            //
 
                             randomArrayList.add(pName + " , " + pEmail + " , " + pPhone + " , " + pType + " , " + pRating + " , " + rateCounter + " , " + panditID);
                             panditEmail.add(pEmail);
