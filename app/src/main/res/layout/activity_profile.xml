@@ -30,11 +30,10 @@
             android:gravity="center_vertical">
 
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/userIcon"
                 android:layout_width="88dp"
                 android:layout_height="60dp"
-                android:elevation="10dp"
-                app:srcCompat="@drawable/user_badge_green" />
+                android:elevation="10dp" />
 
             <TextView
                 android:id="@+id/tvName"
@@ -65,11 +64,10 @@
             android:gravity="center_vertical">
 
             <ImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/msgIcon"
                 android:layout_width="88dp"
                 android:layout_height="60dp"
-                android:elevation="10dp"
-                app:srcCompat="@drawable/email_green" />
+                android:elevation="10dp" />
 
             <TextView
                 android:id="@+id/tvEmail"
@@ -98,11 +96,10 @@
             android:gravity="center_vertical">
 
             <ImageView
-                android:id="@+id/imageView3"
+                android:id="@+id/phoneIcon"
                 android:layout_width="88dp"
                 android:layout_height="60dp"
-                android:elevation="10dp"
-                app:srcCompat="@drawable/phone_no_green" />
+                android:elevation="10dp" />
 
             <TextView
                 android:id="@+id/tvPhoneNum"
@@ -133,11 +130,10 @@
             android:gravity="center_vertical">
 
             <ImageView
-                android:id="@+id/imageView4"
+                android:id="@+id/locationIcon"
                 android:layout_width="88dp"
                 android:layout_height="60dp"
-                android:elevation="10dp"
-                app:srcCompat="@drawable/location_green" />
+                android:elevation="10dp" />
 
             <TextView
                 android:id="@+id/locationText"

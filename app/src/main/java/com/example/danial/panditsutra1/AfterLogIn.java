@@ -49,7 +49,6 @@ import java.util.List;
 
 //import android.widget.Toolbar;
 
-
 public class AfterLogIn extends AppCompatActivity implements SponsorsImageAdapter.OnItemClickListener {
 
     //Sponsor Image Glide
@@ -67,21 +66,20 @@ public class AfterLogIn extends AppCompatActivity implements SponsorsImageAdapte
     private final Handler mHandler = new Handler(Looper.getMainLooper());
     ///
 
-    private FirebaseAuth firebaseAuth;
     private EditText editText;
     private EditText ed2;
     String nummm;
     String toSend;
     private Button logout;
-    DatabaseReference myRef;
-    private FacebookAuthProvider facebookAuthProvider;
-    private FirebaseAuth mAuth;
+
     String locationText;
     LocationManager locationManager;
 
-
-
-
+    ///////
+    private FirebaseAuth firebaseAuth;
+    DatabaseReference myRef;
+    private FacebookAuthProvider facebookAuthProvider;
+    private FirebaseAuth mAuth;
 
     //tabs fragment ...
     TabLayout tabLayout;
@@ -95,7 +93,6 @@ public class AfterLogIn extends AppCompatActivity implements SponsorsImageAdapte
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_after_log_in);
-
 
         //Sponsors Image Glide
         final LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
@@ -125,7 +122,6 @@ public class AfterLogIn extends AppCompatActivity implements SponsorsImageAdapte
                 }
 
                 mAdapter.notifyDataSetChanged();
-
                 mProgressCircle.setVisibility(View.INVISIBLE);
 
             }
@@ -189,16 +185,6 @@ public class AfterLogIn extends AppCompatActivity implements SponsorsImageAdapte
                 viewPagerMain.setCurrentItem(tab.getPosition());
                 if (tab.getPosition() == 1) {
                     toolbar.setBackgroundColor(ContextCompat.getColor(AfterLogIn.this,
-                            R.color.tab_color3));
-                    tabLayout.setBackgroundColor(ContextCompat.getColor(AfterLogIn.this,
-                            R.color.tab_color3));
-
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                        getWindow().setStatusBarColor(ContextCompat.getColor(AfterLogIn.this,
-                                R.color.tab_color3));
-                    }
-                } else if (tab.getPosition() == 2) {
-                    toolbar.setBackgroundColor(ContextCompat.getColor(AfterLogIn.this,
                             R.color.tab_color2));
                     tabLayout.setBackgroundColor(ContextCompat.getColor(AfterLogIn.this,
                             R.color.tab_color2));
@@ -206,6 +192,16 @@ public class AfterLogIn extends AppCompatActivity implements SponsorsImageAdapte
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                         getWindow().setStatusBarColor(ContextCompat.getColor(AfterLogIn.this,
                                 R.color.tab_color2));
+                    }
+                } else if (tab.getPosition() == 2) {
+                    toolbar.setBackgroundColor(ContextCompat.getColor(AfterLogIn.this,
+                            R.color.tab_color3));
+                    tabLayout.setBackgroundColor(ContextCompat.getColor(AfterLogIn.this,
+                            R.color.tab_color3));
+
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        getWindow().setStatusBarColor(ContextCompat.getColor(AfterLogIn.this,
+                                R.color.tab_color3));
                     }
                 } else {
                     toolbar.setBackgroundColor(ContextCompat.getColor(AfterLogIn.this,
@@ -222,64 +218,58 @@ public class AfterLogIn extends AppCompatActivity implements SponsorsImageAdapte
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-
             }
-
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
-
             }
         });
 
         viewPagerMain.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
-
+//        //////
         mAuth = FirebaseAuth.getInstance();
-
-
         firebaseAuth = FirebaseAuth.getInstance();
         //logout = (Button) findViewById(R.id.logoutBtn);
         FacebookSdk.sdkInitialize(getApplicationContext());
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         FirebaseApp.initializeApp(this);
-         myRef = firebaseDatabase.getInstance().getReference().child("Users");
+        myRef = firebaseDatabase.getInstance().getReference().child("Users");
         final PanditProfile userProfile = new PanditProfile();
         final KundliPandit kundllProfile = new KundliPandit();
-
-
-        //for admin and other users
-        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                String passc = dataSnapshot.child(mAuth.getUid()).child("userType").getValue().toString();
-                if(passc.equals("Pandit")){
-                    Toast.makeText(getApplicationContext(), "Yess", Toast.LENGTH_LONG).show();
-                    startActivity(new Intent(AfterLogIn.this, PanditProfileActivity.class));
-                } else if(passc.equals("kundliPandit"))
-                {
-                    Toast.makeText(getApplicationContext(), "kundliPandit", Toast.LENGTH_LONG).show();
-                    startActivity(new Intent(AfterLogIn.this, KundliPanditProfileActivity.class));
-                }else if(passc.equals("Admin")){
-                    startActivity(new Intent(AfterLogIn.this, AdminActivity.class));
-                    finish();
-
-                }
-
-                else{
-                 Toast.makeText(getApplicationContext(),"Users checked", Toast.LENGTH_LONG).show();
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-            }
-
-        }) ;
-
-
-
-        /////// until here
+//
+//
+//        //for admin and other users
+//        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                String passc = dataSnapshot.child(mAuth.getUid()).child("userType").getValue().toString();
+//                if(passc.equals("Pandit")){
+//                    Toast.makeText(getApplicationContext(), "Yess", Toast.LENGTH_LONG).show();
+//                    startActivity(new Intent(AfterLogIn.this, PanditProfileActivity.class));
+//                } else if(passc.equals("Kundli_Pandit"))
+//                {
+//                    Toast.makeText(getApplicationContext(), "Kundli Pandit", Toast.LENGTH_LONG).show();
+//                    startActivity(new Intent(AfterLogIn.this, KundliPanditProfileActivity.class));
+//                }else if(passc.equals("Admin")){
+//                    startActivity(new Intent(AfterLogIn.this, AdminActivity.class));
+//                    finish();
+//                }
+//
+//                else{
+//                 Toast.makeText(getApplicationContext(),"Users checked", Toast.LENGTH_LONG).show();
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//            }
+//
+//        }) ;
+//
+//
+//
+//        /////// until here
 
 
     }

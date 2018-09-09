@@ -38,7 +38,7 @@ public class MsgPanditActivity extends AppCompatActivity implements  DatePickerD
 
     TextView textView, tvDateNTime;
     Button sentBtn;
-   public static String panditEmail;
+    public static String panditEmail;
     String panditType, panditName, panditPhone;
 
     private DatabaseReference appointmentDatabase;
@@ -55,9 +55,9 @@ public class MsgPanditActivity extends AppCompatActivity implements  DatePickerD
     String time;
     RatingBar ratingBar;
     Button ratePBtn;
-   public static float pPrevRate;
+    public static float pPrevRate;
     String previousRating;
-   public static int rateCounter;
+    public static int rateCounter;
     String rCounter;
     EditText adressEt;
     public String address;
@@ -69,12 +69,12 @@ public class MsgPanditActivity extends AppCompatActivity implements  DatePickerD
 
         adressEt = (EditText) findViewById(R.id.edAdress);
         address = adressEt.getText().toString();
-    textView = (TextView) findViewById(R.id.tvInfo);
-    sentBtn = (Button) findViewById( R.id.sendMsgButton);
-    tvDateNTime = (TextView) findViewById(R.id.dateAndTime);
+        textView = (TextView) findViewById(R.id.tvInfo);
+        sentBtn = (Button) findViewById( R.id.sendMsgButton);
+        tvDateNTime = (TextView) findViewById(R.id.dateAndTime);
         appointmentDatabase = FirebaseDatabase.getInstance().getReference();
 
-    Bundle bundle = getIntent().getExtras();
+        Bundle bundle = getIntent().getExtras();
         mAuth = FirebaseAuth.getInstance();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         myRef = mFirebaseDatabase.getReference();
@@ -146,8 +146,8 @@ public class MsgPanditActivity extends AppCompatActivity implements  DatePickerD
             @Override
             public void onClick(View v) {
 
-                    sentDatabase();
-                    sentMsg();
+                sentDatabase();
+                sentMsg();
             }
         });
         ratePBtn.setOnClickListener(new View.OnClickListener() {
@@ -164,9 +164,10 @@ public class MsgPanditActivity extends AppCompatActivity implements  DatePickerD
 
         String kk = (yearFinal + "." + monthFinal + "." + dayFinal + " - "
                 + hourFinal + ":" + minuteFinal);
-        String appStr = userName +" - " + panditName;
+        String appStr = userName.toString().trim().toLowerCase()  + panditName.toString().trim().toLowerCase();
+        appStr.toLowerCase().toLowerCase().trim();
         AppointmentClass appointmentClass = new AppointmentClass(userName, userEmail,userPhone, panditName,panditEmail, panditPhone, kk, address );
-        appointmentDatabase.child("Appointments").child(appStr).setValue(appointmentClass);
+        appointmentDatabase.child("Appointments").child(appStr.trim()).setValue(appointmentClass);
         Toast.makeText(getApplicationContext(),"Successfully added", Toast.LENGTH_LONG).show();
     }
     private void sentMsg(){
@@ -178,7 +179,7 @@ public class MsgPanditActivity extends AppCompatActivity implements  DatePickerD
         intent.putExtra(Intent.EXTRA_SUBJECT, "Appointment for Pooja");
         intent.putExtra(Intent.EXTRA_TEXT, "Dear Sir,\n\n" +
                 "I would like to take an appointment for " + dayFinal + "." + monthFinal + "." + yearFinal + " at "+
-        hourFinal + ":" + minuteFinal + " for " + panditType + " Pooja. \nPlease take my appointment into considaration.\n"
+                hourFinal + ":" + minuteFinal + " for " + panditType + " Pooja. \nPlease take my appointment into considaration.\n"
                 + "My address is: " + address +
                 "\n\nSincerely,\n" + userName + "\n" + userPhone );
         intent.setType("message/rfc822");
@@ -198,10 +199,10 @@ public class MsgPanditActivity extends AppCompatActivity implements  DatePickerD
 
         TimePickerDialog timePickerDialog = new TimePickerDialog(MsgPanditActivity.this, MsgPanditActivity.this,
                 hour, minute,DateFormat.is24HourFormat(MsgPanditActivity.this));
-                timePickerDialog.show();
+        timePickerDialog.show();
 
     }
-//
+    //
 //
     @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {

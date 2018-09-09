@@ -158,7 +158,7 @@ public class PanditProfileActivity extends AppCompatActivity implements View.OnC
 
         switch (v.getId()) {
             case R.id.changePanditProfileImgBtn:
-                startActivity(new Intent(PanditProfileActivity.this, PanditProfileImageActivity.class));
+                startActivity(new Intent(PanditProfileActivity.this, AddPanditProfileImageActivity.class));
                 break;
             case R.id.galleryBtn:
                 startActivity(new Intent(PanditProfileActivity.this, AddPanditGalleryActivity.class));

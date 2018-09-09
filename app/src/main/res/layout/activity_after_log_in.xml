@@ -51,30 +51,30 @@
     <android.support.design.widget.TabLayout
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
-        android:layout_height="35dp"
+        android:layout_height="50dp"
         android:background="@color/mainBackground"
         android:elevation="2dp"
         app:tabSelectedTextColor="@color/white"
-        app:tabTextAppearance="@style/TextAppearance.AppCompat.Button"
+        app:tabTextAppearance="@android:style/TextAppearance.Holo.Medium"
         app:tabTextColor="@android:color/black">
 
         <android.support.design.widget.TabItem
             android:id="@+id/tabPandits"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Pandits" />
+            android:text="PANDITS" />
 
         <android.support.design.widget.TabItem
             android:id="@+id/tabKundli"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Rashifal" />
+            android:text="RASHIFAL" />
 
         <android.support.design.widget.TabItem
             android:id="@+id/tabOther"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Other" />
+            android:text="OTHER" />
 
     </android.support.design.widget.TabLayout>
 

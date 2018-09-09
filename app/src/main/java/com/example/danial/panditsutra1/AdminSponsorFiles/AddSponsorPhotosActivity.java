@@ -67,9 +67,9 @@ public class AddSponsorPhotosActivity extends AppCompatActivity {
         mTextViewShowUploads = findViewById(R.id.text_view_show_uploads);
         mEditTestFileName = findViewById(R.id.edit_text_file_name);
         mImageView = findViewById(R.id.image_view);
-        mProgressBar = findViewById(R.id.mprogress_bar);
+        mProgressBar = findViewById(R.id.mprogress_barr);
 
-        ProgressBar progressbar = (ProgressBar) findViewById(R.id.mprogress_bar);
+        ProgressBar progressbar = (ProgressBar) findViewById(R.id.mprogress_barr);
         int color = getResources().getColor(R.color.subtitle);
         progressbar.getIndeterminateDrawable().setColorFilter(color, PorterDuff.Mode.SRC_IN);
         progressbar.getProgressDrawable().setColorFilter(color, PorterDuff.Mode.SRC_IN);

@@ -8,6 +8,8 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +18,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,11 +29,16 @@ import com.example.danial.panditsutra1.MainPageFiles.PanditsFragment;
 import com.example.danial.panditsutra1.ProfileActivity;
 import com.example.danial.panditsutra1.ProfileClasses.PanditProfile;
 import com.example.danial.panditsutra1.R;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -70,6 +78,8 @@ public class UserViewPanditsActivity extends AppCompatActivity  {
         panditEmail = new ArrayList<>();
         database = FirebaseDatabase.getInstance();
         ref = database.getReference();
+        randomArrayList = new ArrayList<>();
+
         randomArrayList = new ArrayList<>();
 
   //      tvPremium1 = (TextView) findViewById(R.id.pp1Name);

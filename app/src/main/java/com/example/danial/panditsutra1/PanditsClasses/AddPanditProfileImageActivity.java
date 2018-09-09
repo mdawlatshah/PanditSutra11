@@ -25,7 +25,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 import java.io.IOException;
 
-public class PanditProfileImageActivity extends AppCompatActivity {
+public class AddPanditProfileImageActivity extends AppCompatActivity {
 
     private Button btnChoose, btnUpload;
     private ImageView imageView;
@@ -114,14 +114,14 @@ public class PanditProfileImageActivity extends AppCompatActivity {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             progressDialog.dismiss();
-                            Toast.makeText(PanditProfileImageActivity.this, "Uploaded", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AddPanditProfileImageActivity.this, "Uploaded", Toast.LENGTH_SHORT).show();
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             progressDialog.dismiss();
-                            Toast.makeText(PanditProfileImageActivity.this, "Failed "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AddPanditProfileImageActivity.this, "Failed "+e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     })
                     .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {

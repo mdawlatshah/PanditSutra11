@@ -80,9 +80,9 @@ public class ViewAppointmentsActivity extends AppCompatActivity {
                         userEmail = ds.child("panditEmail").getValue().toString();
                         appDateNtime = ds.child("timeAndDate").getValue().toString();
                         userPhone = ds.child("panditPhone").getValue().toString();
-                        String[] sm = ds.getRef().toString().split("%20");
-                        appointmentID = sm[sm.length - 3] + sm[sm.length - 2] + sm[sm.length-1];
-
+//                        String[] sm = ds.getRef().toString().split("%20");
+//                        appointmentID = sm[sm.length - 3] + sm[sm.length - 2] + sm[sm.length-1];
+//
 
                         arrayList.add(userName + "\n" + userEmail + "\n" + userPhone + "\n"  + appDateNtime + "\n  " );
                     }

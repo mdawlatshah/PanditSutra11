@@ -13,6 +13,8 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +26,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 import java.util.Locale;
@@ -52,8 +55,28 @@ public class ProfileActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
 
         BarColors.colorBars(this, R.color.status_bar);
-
         setContentView(R.layout.activity_profile);
+
+        //loads images from firebase and makes app work faster
+        String userUri = "https://firebasestorage.googleapis.com/v0/b/panditsutra1.appspot.com/o/AppImages%2Fuser_badge_green.png?alt=media&token=9ae82b24-1d48-47f7-b87f-dfd3a6d8387c";
+        ImageView userImg = (ImageView) findViewById(R.id.userIcon);
+        Picasso.with(ProfileActivity.this).load(userUri).fit().centerInside().into(userImg);
+
+        //loads images from firebase and makes app work faster
+        String emailUri = "https://firebasestorage.googleapis.com/v0/b/panditsutra1.appspot.com/o/AppImages%2Femail_green.png?alt=media&token=7e37784b-ec6c-47b5-86d1-db5dcd4584f3";
+        ImageView emailImg = (ImageView) findViewById(R.id.msgIcon);
+        Picasso.with(ProfileActivity.this).load(emailUri).fit().centerInside().into(emailImg);
+
+        //loads images from firebase and makes app work faster
+        String phoneUri = "https://firebasestorage.googleapis.com/v0/b/panditsutra1.appspot.com/o/AppImages%2Fphone_no_green.png?alt=media&token=0a0fc592-3e36-4f16-a335-b2a58e609e2f";
+        ImageView phoneImg = (ImageView) findViewById(R.id.phoneIcon);
+        Picasso.with(ProfileActivity.this).load(phoneUri).fit().centerInside().into(phoneImg);
+
+        //loads images from firebase and makes app work faster
+        String locationUri = "https://firebasestorage.googleapis.com/v0/b/panditsutra1.appspot.com/o/AppImages%2Flocation_green.png?alt=media&token=5152dee0-a891-4dba-877e-5dc202494207";
+        ImageView locationImg = (ImageView) findViewById(R.id.locationIcon);
+        Picasso.with(ProfileActivity.this).load(locationUri).fit().centerInside().into(locationImg);
+
         uInfo = new UserProfile();
         profileName = (TextView) findViewById(R.id.tvName);
         profileEmail = (TextView) findViewById(R.id.tvEmail);
