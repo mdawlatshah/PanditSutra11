@@ -71,6 +71,14 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     DatabaseReference pRef;
     private FirebaseAuth pAuth;
 
+
+
+
+    // Push 1
+
+
+
+
     //newly added
     private FirebaseAuth firebaseAuth;
     DatabaseReference myRef;

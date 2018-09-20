@@ -56,12 +56,13 @@ public class AddPanditsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_admin_add_pandits);
 
         BarColors.colorBars(this, R.color.status_bar);
-        cbVastu = (CheckBox) findViewById(R.id.checkBoxVastu);
-        cbAstro = (CheckBox) findViewById(R.id.checkBoxAstrologal);
-        cbJiyoti = (CheckBox) findViewById(R.id.checkBoxJyotish);
-        cbShstri = (CheckBox) findViewById(R.id.checkBoxShastri);
-        cbBiyant = (CheckBox) findViewById(R.id.checkBoxByias);
-        cbMahant = (CheckBox) findViewById(R.id.checkBoxMahant);
+//        cbVastu = (CheckBox) findViewById(R.id.checkBoxVastu);
+//        cbAstro = (CheckBox) findViewById(R.id.checkBoxAstrologal);
+//        cbJiyoti = (CheckBox) findViewById(R.id.checkBoxJyotish);
+//        cbShstri = (CheckBox) findViewById(R.id.checkBoxShastri);
+//        cbBiyant = (CheckBox) findViewById(R.id.checkBoxByias);
+//        cbMahant = (CheckBox) findViewById(R.id.checkBoxMahant);
+        Toast.makeText(getApplicationContext(), "push",Toast.LENGTH_SHORT).show();
 
 
         etName = (EditText) findViewById(R.id.pdName);
